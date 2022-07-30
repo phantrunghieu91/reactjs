@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check account validate</title>
+</head>
+<body>
+    <p id="result"></p>
+    <input type="text" name="" id="account">
+    <button id="check">Check</button>
+</body>
+<script>
+    const result = document.querySelector('#result');
+    const accountValidate = (account) => {
+        const regex = /^[_a-z0-9]{6,}$/;
+        if(regex.test(account)) result.textContent = `${account} is valid.`;
+        else result.textContent = `${account} is not valid.`;
+    };
+
+    document.querySelector('#check').addEventListener('click', (e) => {
+        accountValidate(document.querySelector('#account').value);
+    });
+</script>
+</html>
