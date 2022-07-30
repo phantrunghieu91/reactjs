@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoo management</title>
+</head>
+<body>
+    <input type="text" name="" id="new-animal">
+    <button id="add-new-animal">Add</button>
+    <ul id="animals"></ul>
+</body>
+<script>
+    class Zoo {
+        constructor(animals = new Set()){
+            this.animals = animals;
+        }
+
+        addNewAnimal = (animal) => {
+            if(!this.animals.has(animal)) {
+                this.animals.add(animal);
+                this.render();
+            }
+            else console.log(`${animal} already exist in zoo.`);
+        };
+
+        render = () => {
+            const animalList = document.querySelector('#animals');
+            animalList.innerHTML = '';
+            if(this.animals.size > 0) {
+                this.animals.forEach(animal => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = animal;
+                    const removeBtn = document.createElement('button');
+                    removeBtn.textContent = 'Remove';
+                    removeBtn.addEventListener('click', () => {
+                        this.animals.delete(animal);
+                        this.render();
+                    });
+                    listItem.append(removeBtn);
+                    animalList.append(listItem);
+                });
+            }
+        };
+    };
+
+    const zoo = new Zoo();
+    console.log(zoo.animals);
+
+    document.querySelector('#add-new-animal').addEventListener('click', (e) => {
+        zoo.addNewAnimal(document.querySelector('#new-animal').value);
+    });
+
+    document.body.onload = zoo.render();
+</script>
+</html>
