@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo OOP</title>
+</head>
+<body>
+    
+</body>
+<script>
+    class Shape {
+        constructor(color = 'green', filled = true) {
+            this.color = color;
+            this.filled = filled;
+        }
+
+        toString = () => {
+            return `A Shape with color of ${this.color} and ${this.filled ? 'filled' : 'not filled'}.`;
+        };
+    };
+
+    class Circle extends Shape {
+        constructor(color = 'green', filled = true, radius = 1.0){
+            super(color, filled);
+            this.radius = radius;
+        }
+
+        getArea = () => {
+            return (Math.pow(this.radius, 2) * Math.PI);
+        };
+
+        getPerimeter = () => {
+            return (2 * Math.PI * this.radius);
+        };
+
+        toString = () => {
+            return `A Circle with radius = ${this.radius}, which is a subclass of Shape`;
+        };
+    };
+
+    class Rectangle extends Shape {
+        constructor(color, filled, width = 1.0, height = 1.0) {
+            super(color, filled);
+            this.width = width;
+            this.height = height;
+        }
+
+        getArea = () => {
+            return this.width * this.height;
+        };
+
+        getPerimeter = () => {
+            return (this.width + this.height) * 2;
+        };
+
+        toString = () => {
+            return `A Rectangle with width = ${this.width} and height = ${this.height}, which is a subclass of Shape`;
+        };
+    };
+
+    class Square extends Rectangle {
+        constructor(color, filled, length = 1.0) {
+            super(color, filled, length, length);
+        }
+
+        toString = () => {
+            return `A Square with side = ${this.width}, which is a subclass of Rectangle.`;
+        };
+    };
+
+    const ht = new Circle();
+    ht.radius = 5.5;
+    console.log(ht.color);
+    console.log(ht.toString());
+
+    const hcn = new Rectangle('red', false, 6, 7);
+    console.log(hcn.getArea());
+    console.log(hcn.toString());
+
+    const hv = new Square();
+    console.log(hv.getPerimeter());
+    console.log(hv.toString());
+</script>
+</html>
