@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static usage</title>
+</head>
+<body>
+    
+</body>
+<script>
+    class Info {
+        constructor(name, description) {
+            this.name = name;
+            this.description = description;
+        }
+
+        static calculate = (count = 1) => {
+            return count * 3;
+        };
+    };
+
+    class Geometry extends Info {
+        constructor(name, description, length) {
+            super(name, description);
+            this.length = length;
+        }
+
+        calculate = (number) => {
+            return this.length * number;
+        };
+    };
+
+    const a = new Geometry('square', 'A square', 10);
+    console.log(Info.calculate(5));
+    console.log(a.calculate(5));
+</script>
+</html>
