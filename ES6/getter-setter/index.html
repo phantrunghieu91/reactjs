@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getter and Setter</title>
+</head>
+<body>
+    
+</body>
+<script>
+    class Person {
+        constructor(name) {
+            this._name = name;
+        }
+
+        get name(){
+            return this._name;
+        }
+
+        set name(name){
+            this._name = name;
+        }
+
+        walk = (destination) => {
+            console.log(`${this.name} is walking to ${destination}`);
+        };
+    };
+
+    class Programmer extends Person {
+        constructor(name, programLanguage){
+            super(name);
+            this._programLanguage = programLanguage;
+        }
+
+        get programLanguage () {
+            return this._programLanguage;
+        }
+
+        set programLanguage (language) {
+            this._programLanguage = language;
+        }
+
+        writeCode = () => {
+            console.log(`${this.name} is writing ${this.programLanguage} code.`);
+        };
+    };
+
+    const jin = new Programmer('Jin', 'Javascript');
+    jin.walk('home');
+    jin.writeCode();
+</script>
+</html>
