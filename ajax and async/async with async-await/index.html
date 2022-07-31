@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async with async/await</title>
+</head>
+<body>
+    <p id="display"></p>
+</body>
+<script>
+    const display = document.querySelector('#display');
+
+    async function greet(name) {
+        display.innerHTML = 'Async function!';
+        display.innerHTML += `<br> Hello, ${name}`;
+        return Promise.resolve('resolved!');
+    }
+
+    greet('Dump')
+        .then((result) => display.innerHTML += `<br>${result}`);
+
+    const promise = new Promise((resolve, reject) => {
+        setTimeout(() => display.innerHTML += `<br>3`, 1000);
+        setTimeout(() => display.innerHTML += `<br>2`, 2000);
+        setTimeout(() => display.innerHTML += `<br>1`, 3000);
+        setTimeout(() => display.innerHTML += `<br>resolved!`, 4000);
+        setTimeout(() => resolve('Promise resolved!'), 4000);
+    });
+
+    async function sayHello(name) {
+        let result = await promise;
+        display.innerHTML += `<br>${result}`;
+        display.innerHTML += `<br>Hello, ${name}`;
+    }
+
+    sayHello('aaa');
+</script>
+</html>
