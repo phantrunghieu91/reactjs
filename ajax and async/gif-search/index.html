@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funny GIF search</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="giphy">
+        <h1 class="giphy__title">giphy funny gif</h1>
+        <form action='https://api.giphy.com/v1/gifs/search' class="giphy__search-form" method="get">
+            <input type="text" name="q" class="giphy__search-form__search-input" placeholder="Enter search term">
+            <button type="submit" class="giphy__search-form__submit-btn">Search giphy</button>
+            <button class="giphy__search-form__clear-btn">Clear GIF</button>
+        </form>
+        <div class="giphy__gif-container"></div>
+    </div>
+</body>
+</html>

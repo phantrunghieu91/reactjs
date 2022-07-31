@@ -1,0 +1,87 @@
+*, ::after, ::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 62.5%;
+}
+
+.giphy {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: black;
+    font-size: 2rem;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.giphy__title {
+    color: white;
+    text-transform: uppercase;
+    padding: 1rem;
+}
+
+.giphy__search-form {
+    padding: 1rem;
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.giphy__search-form__search-input {
+    width: 50%;
+    height: fit-content;
+}
+
+.giphy__search-form__search-input,
+.giphy__search-form__submit-btn, 
+.giphy__search-form__clear-btn {
+    padding: .5rem 1rem;
+    font-size: 2rem;
+}
+
+.giphy__search-form__submit-btn, 
+.giphy__search-form__clear-btn {
+    cursor: pointer;
+    color: white;
+}
+
+.giphy__search-form__submit-btn {
+    background-color: hsl(221, 100%, 50%);
+    border: .3rem solid hsl(221, 100%, 50%);
+}
+
+.giphy__search-form__submit-btn:hover {
+    background-color: hsl(221, 100%, 40%);
+    border: .3rem solid hsl(221, 100%, 40%);
+}
+
+.giphy__search-form__clear-btn {
+    background-color: hsl(0, 71%, 45%);
+    border: .3rem solid hsl(0, 71%, 45%);
+}
+
+.giphy__search-form__clear-btn:hover {
+    background-color: hsl(0, 71%, 35%);
+    border: .3rem solid hsl(0, 71%, 35%);
+}
+
+.giphy__gif-container {
+    width: 100%;
+    height: 90%;
+    padding: 1rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.giphy__gif-container__gif-item {
+    width: 30rem;
+    height: 30rem;
+}
