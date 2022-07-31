@@ -6,6 +6,7 @@
 
 :root {
     font-size: 62.5%;
+    --img-size: 40rem;
 }
 
 .giphy {
@@ -82,6 +83,12 @@
 }
 
 .giphy__gif-container__gif-item {
-    width: 30rem;
-    height: 30rem;
+    width: var(--img-size);
+    height: var(--img-size);
+}
+
+@media screen and (max-width: 80rem) {
+    :root {
+        --img-size: 30rem;
+    }
 }
