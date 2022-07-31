@@ -5,19 +5,19 @@ searchFormSubmitBtn.addEventListener('click', (e) => {
     axios.get(`https://api.giphy.com/v1/gifs/search?api_key=aATaab87z5U9CBngQUT5zPYZ0w7oX9DV&limit=6&q=${document.querySelector('input.giphy__search-form__search-input').value}`)
         .then(response => {
             const gifs = response.data.data;
-            console.log(gifs[0]);
             renderGif(gifs);
         })
 });
 
 const renderGif = (gifs) => {
     const gifContainer = document.querySelector('div.giphy__gif-container');
+    gifContainer.innerHTML = '';
     gifs.map(gif => {
-        const gifFrame = document.createElement('iframe');
-        gifFrame.src = gif.embed_url;
-        gifFrame.alt = gif.title;
-        gifFrame.classList.add('giphy__gif-container__gif-item');
-        gifContainer.append(gifFrame);
+        const gifImg = document.createElement('img');
+        gifImg.src = gif.images.original.url;
+        gifImg.alt = gif.title;
+        gifImg.classList.add('giphy__gif-container__gif-item');
+        gifContainer.append(gifImg);
     });
 };
 
