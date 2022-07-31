@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async with callback</title>
+</head>
+<body>
+    <p id="display"></p>
+</body>
+<script>
+    const display = document.querySelector('#display');
+
+    const greet = (name, cb) => {
+        display.innerHTML = `
+            <h3>Async with callback</h3>
+            <br>Hi ${name}
+        `;
+        cb();
+    };
+
+    const callMe = () => {
+        display.innerHTML += `<br>I'm a callback function.`;
+    };
+
+    const helloWorld = () => {
+        display.innerHTML += `
+            <br>
+            <h3>Async with setTimeOut</h3>
+            <br>
+            Hello world!
+        `;
+    };
+
+    const sayHelloTo = (name) => {
+        display.innerHTML += `
+            <br>
+            Hello, ${name}
+        `;
+    };
+
+    greet('Jin', callMe);
+    setTimeout(helloWorld, 2000);
+    sayHelloTo('Jin');
+
+    const greeting = (name, cb) => {
+        display.innerHTML += `
+            <br>
+            <h3>Async with callback and setTimeout</h3>
+            Hello world!
+        `;
+
+        cb(name);
+    };
+
+    setTimeout(greeting, 2000, 'Jin', sayHelloTo);
+</script>
+</html>
