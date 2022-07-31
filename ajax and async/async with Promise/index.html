@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async with promise</title>
+</head>
+<body>
+    <p id="display"></p>
+</body>
+<script>
+    const display = document.querySelector('#display');
+
+    const count = true;
+    const countValue = new Promise((resolve, reject) => {
+        if(count) resolve('There is a count value.');
+        else reject('There is no count value.');
+    });
+    countValue
+        .then(successValue = (result) => {
+            display.innerHTML = result;
+        })
+        .then(successValue1 = () => {
+            display.innerHTML += '<br>We can call multiple function this way.';
+        })
+        .catch(errorValue = (result) => {
+            display.innerHTML = result;
+        });
+    console.log(countValue);
+</script>
+</html>
