@@ -1,0 +1,153 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  font-size: 62.5;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  background-color: brown;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-app {
+  background-color: white;
+  height: 60%;
+  aspect-ratio: 1;
+  padding: 2rem;
+  font-size: 1.6rem;
+  display: flex;
+  flex-flow: column nowrap;  
+  align-items: center;
+  color: brown;
+  border-radius: 2rem;
+}
+
+.todo-app__header {
+  width: 100%;
+  height: 25%;
+  text-align: center;
+}
+
+.todo-app__content {
+  width: 100%;
+  height: 75%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.todo-app__content__form {
+  position: relative;
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: .1rem solid currentColor;
+}
+
+.todo-app__content__form__caption {
+  position: absolute;
+  top: -1.6rem;
+  left: 1rem;
+  text-transform: capitalize;
+  background-color: white;
+  padding: 0 .5rem;
+}
+
+.todo-app__content__form__todo-text,
+.todo-app__content__form__submit {
+  font-size: 1.6rem;
+  padding: .5rem 1rem;
+}
+
+.todo-app__content__form__todo-text {
+  color: brown;
+  border: .1rem solid currentColor;
+}
+
+.todo-app__content__form__submit {
+  background-color: brown;
+  color: white;
+  text-transform: capitalize;
+  border: .1rem solid brown;
+  cursor: pointer;
+}
+
+.todo-app__content__form__submit:hover {
+  background-color: white;
+  color: brown;
+  border-left: 0;
+}
+
+.todo-app__content__todo-list {
+  width: 100%;
+  height: 70%;
+  border: .1rem solid brown;
+  border-top: 0;
+  padding: .5rem;
+  overflow: auto;
+}
+
+.todo-app__content__todo-list__display {
+  list-style-type: none;
+  width: 100%;
+  padding: 0 .5rem;
+}
+
+.todo-app__content__todo-list__display__todo-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: .2rem;
+}
+
+.todo-app__content__todo-list__display__todo-item span {
+  display: inline-block;
+  font-size: 1.6rem;
+}
+
+.todo-app__content__todo-list__display__todo-item__btn-grp button {
+  padding: .5rem 1rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.todo-app__content__todo-list__display__todo-item__btn-grp__edit {
+  background-color: green;
+  border: .1rem solid green;
+  color: white;
+}
+
+.todo-app__content__todo-list__display__todo-item__btn-grp__edit:hover {
+  background-color: white;
+  color: green;
+}
+
+.todo-app__content__todo-list__display__todo-item__btn-grp__remove {
+  margin-left: .2rem;
+  background-color: red;
+  border: .1rem solid red;
+  color: white;
+}
+
+.todo-app__content__todo-list__display__todo-item__btn-grp__remove:hover {
+  background-color: white;
+  color: red;
+}
