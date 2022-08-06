@@ -1,0 +1,10 @@
+.select-car {
+  margin: 2rem;
+  padding: 2rem;
+  border: 2px solid black;
+  width: fit-content;
+}
+
+.select-car__result {
+  text-transform: capitalize;
+}
