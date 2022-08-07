@@ -1,4 +1,7 @@
 import { useState } from "react";
+import TransactionHistoryDisplay from "./TransactionHistoryDisplay";
+import useTransactions from "../hooks/useTransactions";
+import AlertBox from "./AlertBox";
 const dateInfo = new Date();
 let currentDate = `${dateInfo.getFullYear()}-${dateInfo.getMonth() < 10 ? `0${(dateInfo.getMonth() + 1)}` : (dateInfo.getMonth() + 1)}-${dateInfo.getDate() < 9 ? `0${dateInfo.getDate()}` : dateInfo.getDate() }`;
 document.title = `Expense Tracker`;
@@ -11,9 +14,11 @@ function ExpenseManagement() {
         date: currentDate
     });
 
-    const [transactions, setTransactions] = useState([
+    const [transactions, addNewTransaction] = useTransactions(
         {text: 'Test', type: 'income', amount: 100, date: '2022-08-01'}
-    ]);
+    );
+
+    const [isValid, setIsValid] = useState(false);
 
     const [balance, setBalance] = useState(2100);
     const [income, setIncome] = useState(100);
@@ -22,21 +27,42 @@ function ExpenseManagement() {
     const handleChange = (e) => {
         const {name, value} = e.target;
         setTransaction(prevState => {
-            return name==='amount' ? {
-                ...prevState, [name]: +value
-            } : {...prevState, [name]: value}
-        });
+            return name==='amount' ?
+                {...prevState, [name]: +value} :
+                {...prevState, [name]: value}
+        }, checkValid());
+    };
+
+    const checkValid = () => {
+        const textRegex = /[A-Za-z0-9]{1,}/;
+        const numberRegex = /^[0-9]+(\.){0,1}([0.9]*)/;
+        console.log(`text: ${textRegex.test(transaction.text)}`);
+        console.log(`amount: ${numberRegex.test(transaction.amount)}`);
+        console.log(`type(${transaction.type}): ${(transaction.type === 'income' || transaction.type === 'expense')}`);
+        console.log(textRegex.test(transaction.text)
+        && (transaction.type === 'income' || transaction.type === 'expense')
+        && numberRegex.test(transaction.amount));
+        setIsValid(
+            textRegex.test(transaction.text)
+            && (transaction.type === 'income' || transaction.type === 'expense')
+            && numberRegex.test(transaction.amount)
+        );
     };
 
     const handleSubmit = e => {
+        checkValid();
         e.preventDefault();
-        setTransactions([...transactions, transaction]);
-        if(transaction.type === 'income') {
-            setIncome(transaction.amount);
-            setBalance(balance + transaction.amount);
-        } else if(transaction.type === 'expense'){
-            setExpense(transaction.amount);
-            setBalance(balance - transaction.amount);
+        if(isValid) {
+            addNewTransaction(transaction);
+            if(transaction.type === 'income') {
+                setIncome(transaction.amount);
+                setBalance(balance + transaction.amount);
+            } else if(transaction.type === 'expense'){
+                setExpense(transaction.amount);
+                setBalance(balance - transaction.amount);
+            }
+        } else {
+            // Giải quyết alert
         }
     };
 
@@ -95,40 +121,7 @@ function ExpenseManagement() {
                         </div>
                     </div>
                 </div>
-                <div className="expense-app__content__history">
-                    <div className="expense-app__content__history__header">
-                        <h3 className="expense-app__content__history__header__title">Transaction History</h3>
-                        <span className='expense-app__content__history__header__transaction-count'>{transactions.length < 2 ? `${transactions.length} transaction` : `${transactions.length} transactions`}</span>
-                    </div>
-                    <div className="expense-app__content__history__display">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Transaction</th>
-                                    <th>Type</th>
-                                    <th>Amount</th>
-                                    <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    transactions.map((ele, index) => {
-                                        return (
-                                            <tr key={`transaction-${index}`}
-                                            className={`expense-app__content__history__display--tr-${ele.type}`}
-                                            >
-                                                <td>{ele.text}</td>
-                                                <td>{ele.type}</td>
-                                                <td>${ele.amount}</td>
-                                                <td>{ele.date}</td>
-                                            </tr>
-                                        );
-                                    })
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                <TransactionHistoryDisplay transactions={transactions}/>
             </div>
         </div>
     );
