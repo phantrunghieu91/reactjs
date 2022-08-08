@@ -41,6 +41,10 @@ function ExpenseManagement() {
         });
     };
 
+    const handleBalanceChange = (e) => {
+        setBalance(e.target.value);
+    };
+
     const checkValid = () => {
         const textRegex = /[A-Za-z0-9]{1,}/;
         const numberRegex = /^[0-9]+(\.){0,1}([0.9]*)/;
@@ -87,7 +91,8 @@ function ExpenseManagement() {
         <div className='expense-app'>
             <h1 className="expense-app__header">Expense Tracker</h1>
             <div className="expense-app__content">
-                <MoneyDisplay balance={balance} income={income} expense={expense}/>
+                <MoneyDisplay balance={balance} income={income} expense={expense}
+                    handleBalanceChange={handleBalanceChange}/>
                 <div className="expense-app__content__add-new-transaction">
                     <h3 className="expense-app__content__add-new-transaction__title">Add new transaction</h3>
                     <TransactionForm transaction={transaction}

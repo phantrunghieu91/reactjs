@@ -1,9 +1,33 @@
+import { useState } from "react";
+
 function MoneyDisplay(props) {
+    const [isChanging, setIsChanging] = useState(false);
+
+    const handleSubmitChange = (e) => {
+        e.preventDefault();
+        setIsChanging(prevState => !prevState);
+        console.log(isChanging);
+        if(isChanging) {
+
+        }
+    };
+
     return (
         <div className='expense-app__content__total'>
             <div className="expense-app__content__total__balance">
-                <h3 className="expense-app__content__total__balance__label">Balance: </h3>
-                <span className="expense-app__content__total__balance__amount">${props.balance.toFixed(2)}</span>
+            <h3 className="expense-app__content__total__balance__label">Your Current Balance: </h3>
+                <div className='expense-app__content__total__balance__form'>
+                    <span className="expense-app__content__total__balance__form__amount"
+                    style={isChanging ? {display: 'none'} : {display: 'inline-block'}}>${props.balance}</span>
+                    <input className="expense-app__content__total__balance__form__input"
+                        type='number' name='balance' onChange={props.handleBalanceChange} value={props.balance}
+                        style={isChanging ? {display: 'inline-block'} : {display: 'none'}}
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+                    <button
+                        className="expense-app__content__total__balance__form__change-btn"
+                        onClick={handleSubmitChange}
+                    >Change</button>
+                </div>
             </div>
             <div className='expense-app__content__total__income-expense'>
                 <div className="expense-app__content__total__income-expense__income">

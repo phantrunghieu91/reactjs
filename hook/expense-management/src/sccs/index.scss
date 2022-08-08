@@ -70,14 +70,50 @@
         @include d-flex-short(column, nowrap, center, center);
         background-color: white;
         border: .2rem solid $green-darkest;
-
         &__label {
           margin-bottom: .5rem;
         }
+        &__form {
+          width: 100%;
+          @include d-flex-short(column, nowrap, flex-start, center);
+          
+          &__amount {
+            font-size: 2.5rem;
+            font-weight: 600;
+          }
 
-        &__amount {
-          font-size: 2.5rem;
-          font-weight: 600;
+          &__input {
+            padding: .5rem 1rem;
+            font-size: 2rem;
+            text-align: center;
+            width: 15rem;
+          }
+
+          &__change-btn {
+            padding: 1rem;
+            font-size: 2rem;
+            background-color: $green-dark;
+            border: .2rem solid currentColor;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 
+            .5rem .5rem 0 0 $green-darkest,
+            -.5rem .5rem 0 0 $green-darkest;
+            transition: all .15s ease-in-out;
+
+            &:hover {
+              transform: translateY(.2rem);
+              box-shadow: 
+                .4rem .3rem 0 0 $green-darkest,
+                -.4rem .3rem 0 0 $green-darkest;
+                background-color: adjust-color($color: $green-dark, $whiteness: 10%, $alpha: 1.0);
+            }
+
+            &:active {
+              transform: translateY(.5rem);
+              box-shadow: none;
+            }
+          }
         }
       }
 
