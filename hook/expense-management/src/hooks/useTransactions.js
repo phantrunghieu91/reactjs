@@ -17,13 +17,13 @@ function useTransactions() {
         setTransactions(() => {
             return transactions.map((ele, id) => {
                 if(id === transIndex) {
-                    ele = transaction;
-                }
+                    return ele = transaction;
+                } else return ele;
             });
         });
     };
 
-    return [transactions, addNewTransaction, deleteTransaction];
+    return [transactions, addNewTransaction, deleteTransaction, editTransaction];
 }
 
 export default useTransactions;
