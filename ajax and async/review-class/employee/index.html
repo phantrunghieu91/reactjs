@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee</title>
+</head>
+<body>
+    <script>
+        class Employee {
+            constructor(employeeId, firstName, lastName, salary) {
+                this.employeeId = employeeId;
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this.salary = salary;
+            }
+
+            getFullName = () => `${this.firstName} ${this.lastName}`;
+
+            getSalary = () => this.salary;
+
+            getAnnualSalary = () => (this.salary * 12);
+
+            raiseSalary = (percent) => this.salary += (this.salary * percent / 100);
+        }
+
+        class PartTimeEmployee extends Employee {
+            constructor(id, firstName, lastName, salary, hourlyWage) {
+                super(id, firstName, lastName, salary);
+                this.hourlyWage = hourlyWage;
+                this.workHours = 0;
+                this.timeKeeping = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            }
+
+            getSalary = () => {
+                const dateInfo = new Date();
+                const month = dateInfo.getMonth();
+                return this.salary = this.timeKeeping[month] * this.hourlyWage;
+            };
+
+            setTimeKeeping = (workedMonth, workHours) => {
+                this.timeKeeping[workedMonth-1] = workHours;
+                this.setWorkHours();
+            };
+
+            setWorkHours = () => this.workHours = this.timeKeeping.reduce((total, monthWorkedHours) => total += monthWorkedHours, 0);
+
+            getAnnualSalary = () => this.timeKeeping.reduce((total, monthWorkedHours) => total += monthWorkedHours * this.hourlyWage, 0);
+
+            raiseSalary = (percent) => this.hourlyWage += this.hourlyWage * percent / 100;
+        }
+
+        const ptEmployee = new PartTimeEmployee(1, 'Kim', 'Rae Jin', 0, 10);
+        console.log(ptEmployee.getFullName());
+        ptEmployee.setTimeKeeping(8, 240);
+        ptEmployee.setTimeKeeping(7, 200);
+        console.log(ptEmployee.timeKeeping);
+        console.log(ptEmployee.getSalary());
+        ptEmployee.raiseSalary(20);
+        console.log(ptEmployee.getSalary());
+        console.log(ptEmployee.getAnnualSalary());
+    </script>
+    
+</body>
+</html>
