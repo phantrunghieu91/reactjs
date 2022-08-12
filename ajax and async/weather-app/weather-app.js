@@ -1,6 +1,7 @@
 const currentLocationWeather = document.querySelector('div.weather-app__main__current-location-weather');
 const APIKey = '125c4133df829f739ea47c7cc20dfd7c';
 const hoianCoor = {lat: 15.87944, lon: 108.335};
+let cityName = '';
 
 const convertFtoC = (fahrenheit) => {
     return ((fahrenheit - 32) * 5) / 9;
@@ -14,21 +15,28 @@ const msToKmh = (ms) => {
     return (ms * 3.6).toFixed(1);
 };
 
-document.body.onload = () => {
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${hoianCoor.lat}&lon=${hoianCoor.lon}&appid=${APIKey}`)
+document.querySelector('input.weather-app__main__search-form__city-name').addEventListener('change', (e) => {
+    cityName = e.currentTarget.value;
+});
+
+document.querySelector('button.weather-app__main__search-form__submit').addEventListener('click', (e) => {
+    e.preventDefault();
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}`)
         .then(response => {
             const weatherData = response.data;
             render(weatherData);
-        });
-};
+        })
+        .catch((err) => console.log(err));
+});
 
 const render = (data) => {
     const container = document.querySelector('div.weather-app__main__current-location-weather');
+    container.innerHTML = '';
     const currentLocation = document.createElement('h3');
     currentLocation.innerHTML = `${data.name}`;
     container.append(currentLocation);
     for([key, value] of Object.entries(data)){
-        console.log(key, value);
+        // console.log(key, value);
         switch(key) {
             case 'weather':
                 const weather = document.createElement('p');
