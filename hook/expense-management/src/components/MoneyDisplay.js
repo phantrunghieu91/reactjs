@@ -6,7 +6,6 @@ function MoneyDisplay(props) {
     const handleSubmitChange = (e) => {
         e.preventDefault();
         setIsChanging(prevState => !prevState);
-        console.log(isChanging);
         if(isChanging) {
 
         }
@@ -20,7 +19,7 @@ function MoneyDisplay(props) {
                     <span className="expense-app__content__total__balance__form__amount"
                     style={isChanging ? {display: 'none'} : {display: 'inline-block'}}>${props.balance}</span>
                     <input className="expense-app__content__total__balance__form__input"
-                        type='number' name='balance' onChange={props.handleBalanceChange} value={props.balance}
+                        type='text' name='balance' onChange={props.handleBalanceChange} value={props.balance}
                         style={isChanging ? {display: 'inline-block'} : {display: 'none'}}
                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
                     <button

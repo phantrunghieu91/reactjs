@@ -22,16 +22,13 @@ function TransactionForm(props) {
                     <option value='expense'>Expense</option>
                 </select>
                 <input className="expense-app__content__add-new-transaction__form__input-grp__amount" 
-                    type='number' placeholder="Amount" name='amount' required
+                    type='text' placeholder="Amount" name='amount' required
                     onChange={props.handleChange} value={props.transaction.amount}
                 />
                 <input className="expense-app__content__add-new-transaction__form__input-grp__date" 
                     type='date' name='date'
                     onChange={props.handleChange} value={props.transaction.date}
                 />
-            </div>
-            <div className={`expense-app__content__add-new-transaction__form__alert-message  ${props.alertMessage.classModifier}`}>
-                <p className={`expense-app__content__add-new-transaction__form__alert-message__message`}>{props.alertMessage.isAlert && `${props.alertMessage.message}`}</p>
             </div>
             <div className="expense-app__content__add-new-transaction__form__button-grp">
                 <button className="expense-app__content__add-new-transaction__form__button-grp__submit"

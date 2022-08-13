@@ -17,7 +17,7 @@ function ExpenseManagement() {
     });
 
     const [transactions, addNewTransaction] = useTransactions(
-        {text: 'Test', type: 'income', amount: 100, date: '2022-08-01'}
+        {text: '', type: '', amount: null, date: ''}
     );
 
     const [isValid, setIsValid] = useState(false);
@@ -34,15 +34,34 @@ function ExpenseManagement() {
 
     const handleChange = (e) => {
         const {name, value} = e.target;
-        setTransaction(prevState => {
-            return name==='amount' ?
-                {...prevState, [name]: +value} :
-                {...prevState, [name]: value}
-        });
+        const textRegex = /[A-Za-z0-9]{1,}/;
+        const numberRegex = /^\d*(\.\d*)?|(\d)*/;
+        if(name === 'text' || name === 'type' || name === 'date') {
+            if(textRegex.test(value)) 
+                setTransaction(prevState => {
+                    return name==='amount' ?
+                        {...prevState, [name]: +value} :
+                        {...prevState, [name]: value}
+                });
+        } else if(name === 'amount') {
+            if(numberRegex.test(value)) 
+                setTransaction(prevState => {
+                    return name==='amount' ?
+                        {...prevState, [name]: +value} :
+                        {...prevState, [name]: value}
+                });
+        }
+        // setTransaction(prevState => {
+        //     return name==='amount' ?
+        //         {...prevState, [name]: +value} :
+        //         {...prevState, [name]: value}
+        // });
     };
 
     const handleBalanceChange = (e) => {
-        setBalance(e.target.value);
+        const banlanceRegex = /^([0-9]{1,})$/;
+        let inputBalance = e.target.value;
+        if(banlanceRegex.test(inputBalance)) setBalance(inputBalance);
     };
 
     const checkValid = () => {
@@ -93,13 +112,15 @@ function ExpenseManagement() {
             <div className="expense-app__content">
                 <MoneyDisplay balance={balance} income={income} expense={expense}
                     handleBalanceChange={handleBalanceChange}/>
+                <div className={`expense-app__content__alert-message  ${alertMessage.classModifier}`}>
+                    <p className={`expense-app__content__alert-message__message`}>{alertMessage.isAlert && `${alertMessage.message}`}</p>
+                </div>
                 <div className="expense-app__content__add-new-transaction">
                     <h3 className="expense-app__content__add-new-transaction__title">Add new transaction</h3>
                     <TransactionForm transaction={transaction}
                         handleChange={handleChange}
                         handleSubmit={handleSubmit}
                         checkValid={checkValid}
-                        alertMessage={alertMessage}
                     />
                 </div>
                 <TransactionHistoryDisplay transactions={transactions}/>
