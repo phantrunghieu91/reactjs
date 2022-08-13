@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+}
+
+// Mixin here
+@mixin sizeOverFlow($w, $h, $of: auto) {
+  width: $w;
+  height: $h;
+  overflow: $of;
+}
+
+@mixin displayFlex($direct, $wrap, $justify, $align){
+  display: flex;
+  flex-flow: $direct $wrap;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// Variable here
+
+
+// Main content here
+.app {
+  @include sizeOverFlow(100%, 100vh, hidden);
+  @include displayFlex(row, nowrap, center, center);
+  background-color: hsl(0, 0%, 19%);
+  color: white;
+  font-size: 2rem;
+
+  &__form {
+    @include sizeOverFlow(60%, 60%, hidden);
+    @include displayFlex(column, nowrap, flex-start, center);
+    background-color: hsl(0, 0%, 49%);
+    padding: 2rem;
+    
+    &__header {
+      @include sizeOverFlow(100%, 10%);
+      @include displayFlex(row, nowrap, center, center);
+    }
+
+    &__content {
+      padding: 2rem;
+      @include sizeOverFlow(100%, 90%);
+      @include displayFlex(column, nowrap, flex-start, center);
+
+      &__custom-input {
+        @include sizeOverFlow(80%, calc(100% / 5), hidden);
+        @include displayFlex(column, nowrap, flex-start, center);
+
+        label {
+          width: 100%;
+          margin: 0 0 .5rem 1rem;
+        }
+
+        input {
+          font-size: 2rem;
+          padding: 1rem;
+          width: 100%;
+        }
+      }
+
+      button {
+        font-size: 2rem;
+        width: 80%;
+        margin-top: 2rem;
+        padding: 1.5rem;
+      }
+    }
+  }
+}
