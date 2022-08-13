@@ -1,0 +1,82 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+}
+
+// Mixin here
+@mixin sizeOverFlow($w, $h, $of: auto) {
+  width: $w;
+  height: $h;
+  overflow: $of;
+}
+
+@mixin displayFlex($direct, $wrap, $justify, $align){
+  display: flex;
+  flex-flow: $direct $wrap;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// Variable here
+$error-color: hsl(0, 43%, 41%);
+
+// Main content here
+.app {
+  font-size: 2.5rem;
+  background-color: hsl(253, 76%, 42%);
+  color: white;
+  @include sizeOverFlow(100%, 100vh, hidden);
+  @include displayFlex(column, nowrap, center, center);
+
+  &__form {
+    background-color: hsl(246, 84%, 32%);
+    padding: 2rem;
+    @include sizeOverFlow(60%, 60%, hidden);
+    @include displayFlex(column, nowrap, flex-start, center);
+    border-radius: 10%;
+
+    &__header {
+      @include sizeOverFlow(fit-content, 15%, hidden);
+    }
+
+    &__content {
+      @include sizeOverFlow(100%, 85%, hidden);
+      @include displayFlex(column, nowrap, flex-start, center);
+
+      &__input-group {
+        @include sizeOverFlow(80%, 40%, hidden);
+        @include displayFlex(column, nowrap, center, flex-start);
+        padding: 2rem;
+
+        & label {
+          margin-left: 2rem;
+          @include sizeOverFlow(100%, 30%, hidden);
+        }
+
+        & input {
+          @include sizeOverFlow(100%, 45%, hidden);
+          font-size: 2.5rem;
+          padding: .5rem;
+          width: 100%;
+        }
+
+        &__error {
+          @include sizeOverFlow(100%, 25%, hidden);
+          background-color: $error-color;
+          padding: 0 3rem;
+        }
+      }
+
+      &__submit {
+        padding: 2rem;
+        font-size: 2.5rem;
+        width: calc(80% - 4rem);
+      }
+    }
+  }
+}
