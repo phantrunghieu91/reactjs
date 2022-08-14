@@ -1,0 +1,40 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+}
+
+// mixin
+@mixin sizeAndOverflow($w, $h, $overflow: auto) {
+  width: $w;
+  height: $h;
+  overflow: $overflow;
+}
+
+@mixin displayFlex($direct, $wrap, $justify, $align, $display: flex){
+  display: $display;
+  flex-flow: $direct $wrap;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin fontSize($fs, $fw) {
+  font-size: $fs;
+  font-weight: $fw;
+}
+
+// variables
+
+// main
+.app {
+  @include sizeAndOverflow(100%, 100vh, hidden);
+  @include displayFlex(column, nowrap, flex-start, center);
+  @include fontSize(2rem, normal);
+  padding: 2rem;
+  background-color: darkolivegreen;
+  color: lightsalmon;
+}
