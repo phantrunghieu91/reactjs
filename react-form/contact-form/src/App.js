@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 import {Formik} from 'formik';
 import './App.scss';
 
@@ -44,7 +44,8 @@ function App() {
     return errors;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = e => {
+    // e.preventDefault();
     alert('Success sent message!');
     //alert(JSON.stringify(form, null, 2));
   };
@@ -69,8 +70,9 @@ function App() {
                 <label for='name'>Name</label>
                 <input 
                   className='app__content__form__input-group__name'
+                  type='text'
                   id='name' name='name' placeholder='Enter name here'
-                  value={form.name || ''} type='text'
+                  value={form.name || ''} 
                   onChange={handleChange}
                 />
                 {<p className='app__content__form__input-group__error'>{errors.name}</p>}
@@ -78,9 +80,10 @@ function App() {
               <div className={`app__content__form__input-group ${errors.email ? 'error' : ''}`}>
                 <label for='email'>Email</label>
                 <input 
-                  className='app__content__form__input-email'
+                  className='app__content__form__input-group__email'
+                  type='text'
                   id='email' name='email' placeholder='Enter email here'
-                  value={form.email || ''} type='email'
+                  value={form.email || ''} 
                   onChange={handleChange}
                 />
                 {<p className='app__content__form__input-group__error'>{errors.email}</p>}
@@ -88,9 +91,10 @@ function App() {
               <div className={`app__content__form__input-group ${errors.phone ? 'error' : ''}`}>
                 <label for='phone'>Phone</label>
                 <input 
-                  className='app__content__form__input-phone'
+                  className='app__content__form__input-group__phone'
+                  type='text'
                   id='phone' name='phone' placeholder='Enter phone here'
-                  value={form.phone || ''} type='text'
+                  value={form.phone || ''}
                   onChange={handleChange}
                 />
                 {<p className='app__content__form__input-group__error'>{errors.phone}</p>}
