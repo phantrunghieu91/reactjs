@@ -24,9 +24,8 @@ const Signin = () => {
                     return errors;
                 }}
                 onSubmit={(values, actions) => {
-                    alert("Sign in success!");
                     setTimeout(() => {
-                        navigate('/', {state: {username: 'Admin', email: values.email}});
+                        navigate('/employee', {state: {username: 'Admin'}});
                         // alert(JSON.stringify(values, null, 2));
                         actions.setSubmitting(false);
                     }, 500);

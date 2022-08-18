@@ -2,6 +2,8 @@ import './App.scss';
 import {NavLink, Route, Routes} from 'react-router-dom';
 import Home from './components/Home';
 import Signin from './components/Signin';
+import Employee from './components/Employee';
+import EmployeeDetail from './components/EmployeeDetail';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/signin' element={<Signin />} />
+        <Route path='/employee' element={<Employee />} />
+        <Route path='/employee/:employeeID' element={<EmployeeDetail />} />
       </Routes>
     </div>
   );
