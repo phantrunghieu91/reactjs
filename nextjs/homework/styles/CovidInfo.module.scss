@@ -1,0 +1,36 @@
+@import './mixins';
+@import './variables';
+
+.container {
+    @include sizeAndOverflow(100%, 100%, hidden);
+    @include dFlex(column, nowrap, flex-start, center);
+
+    &__header {
+        @include sizeAndOverflow(100%, 10%, hidden);
+        @include dFlex(column, nowrap, center, center);
+        padding: 1rem;
+    }
+
+    &__main {
+        @include sizeAndOverflow(100%, 90%, hidden);
+        @include dFlex(row, nowrap, center, flex-start);
+
+        &__covid-info {
+            margin-top: 2rem;
+            @include sizeAndOverflow(80%, 95%, auto);
+
+            &__table {
+                @include sizeAndOverflow(100%, auto);
+                border-collapse: collapse;
+                @include fontSize(1.8rem, normal);
+    
+                & th, td {
+                    border: .2rem solid $dark-cyan;
+                    padding: .5rem;
+                    background-color: $light-cyan;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

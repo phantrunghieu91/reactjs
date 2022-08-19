@@ -1,0 +1,17 @@
+@mixin fontSize($fs, $fw: normal) {
+    font-size: $fs;
+    font-weight: $fw;
+}
+
+@mixin dFlex($direct, $wrap, $justify, $align, $display: flex) {
+    display: $display;
+    flex-flow: $direct $wrap;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin sizeAndOverflow($w, $h, $overflow: auto) {
+    width: $w;
+    height: $h;
+    overflow: $overflow;
+}

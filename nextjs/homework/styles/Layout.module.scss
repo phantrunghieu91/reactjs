@@ -1,0 +1,54 @@
+@import './mixins';
+@import './variables';
+
+.wrapper {
+    @include sizeAndOverflow(100%, 100vh, hidden);
+    @include dFlex(column, nowrap, flex-start, center);
+    background-color: $dark-cyan;
+
+    &__header {
+        @include sizeAndOverflow(100%, 6rem);
+        @include dFlex(row, nowrap, flex-start, flex-start);
+        background-color: $dark-cyan;
+
+        &__brand {
+            @include sizeAndOverflow(fit-content, 100%, hidden);
+            @include dFlex(row, nowrap, center, center);
+            padding: 1rem;
+            color: $light-cyan;
+            border-right: .3rem solid $light-cyan;
+        }
+
+        &__navbar {
+            @include sizeAndOverflow(auto, 100%, hidden);
+            flex: 1 0 auto;
+
+            &__list {
+                @include sizeAndOverflow(100%, 100%, hidden);
+                @include dFlex(row, nowrap, space-evenly, center);
+                list-style-type: none;
+
+                &__item {
+                    a {
+                        @include fontSize(2rem, 600);
+                        color: $light-cyan;
+                        text-decoration: none;
+                        transition: all .35s ease;
+
+                        &:hover {
+                            color: darken($color: $light-cyan, $amount: 50%);
+                            font-size: 3rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &__main {
+        @include sizeAndOverflow(100%, calc(100% - 6rem), hidden);
+        @include dFlex(column, nowrap, flex-start, center);
+        background-color: $cyan;
+        flex: 1 0 auto;
+    }
+}
