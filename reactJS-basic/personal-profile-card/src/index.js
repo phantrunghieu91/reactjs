@@ -20,7 +20,7 @@ root.render(
       />
     </div>
     <div className='profile-card__content'>
-      <h3 className='profile-card__content__name'>Kim Rae Jin</h3>
+      <h3 className='profile-card__content__name'>Phan Trung Hiếu</h3>
       <p className='profile-card__content__description'>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
       <button className='profile-card__content__follow-btn'>Follow</button>
     </div>

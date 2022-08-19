@@ -69,7 +69,7 @@ function App() {
         </div>
         <div className='app__form__content'>
           <div className={`app__form__content__custom-input ${user.username && user.username.error && 'error'}`}>
-            <label for='username'>Username:</label>
+            <label htmlFor='username'>Username:</label>
             <input className='app__form__content__custom-input__username'
               type='text' name='username' id='username'
               placeholder='Username here' onChange={handleChange}
@@ -78,7 +78,7 @@ function App() {
                 (<p className='app__form__content__custom-input__error'>{user.username.error}</p>)}
           </div>
           <div className={`app__form__content__custom-input ${user.email && user.email.error && 'error'}`}>
-            <label for='email'>Email:</label>
+            <label htmlFor='email'>Email:</label>
             <input className='app__form__content__custom-input__email'
               type='email' name='email' id='email'
               placeholder='Email here' onChange={handleChange}
@@ -87,7 +87,7 @@ function App() {
                 (<p className='app__form__content__custom-input__error'>{user.email.error}</p>)}
           </div>
           <div className={`app__form__content__custom-input ${user.password && user.password.error && 'error'}`}>
-            <label for='password'>Password:</label>
+            <label htmlFor='password'>Password:</label>
             <input className='app__form__content__custom-input__password'
               type='password' name='password' id='password'
               placeholder='Password here' onChange={handleChange}
@@ -96,7 +96,7 @@ function App() {
                 (<p className='app__form__content__custom-input__error'>{user.password.error}</p>)}
           </div>
           <div className={`app__form__content__custom-input ${user.confirmPassword && user.confirmPassword.error && 'error'}`}>
-            <label for='confirmPassword'>Confirm Password:</label>
+            <label htmlFor='confirmPassword'>Confirm Password:</label>
             <input className='app__form__content__custom-input__confirm-password'
               type='password' name='confirmPassword' id='confirmPassword'
               placeholder='Confirm password here' onChange={handleChange}

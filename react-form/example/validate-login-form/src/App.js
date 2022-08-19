@@ -44,14 +44,14 @@ function App() {
         </div>
         <div className='app__form__content'>
           <div className={`app__form__content__input-group ${form.email && form.email.error && 'error'}`}>
-            <label for='email'>Email</label>
+            <label htmlFor='email'>Email</label>
             <input type='email' id='email' name='email'
               onChange={handleChange} value={(form.email && form.email.value) || ''}
               className='app__form__content__input-group__email'/>
               {form.email && form.email.error && (<p className='app__form__content__input-group__error'>{form.email.error}</p>)}
           </div>
           <div className={`app__form__content__input-group ${form.password && form.password.error && 'error'}`}>
-            <label for='password'>Password</label>
+            <label htmlFor='password'>Password</label>
             <input type='password' id='password' name='password'
               onChange={handleChange} value={(form.password && form.password.value) || ''}
               className='app__form__content__input-group__password'/>

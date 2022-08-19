@@ -25,28 +25,28 @@ export default function App (){
         </div>
         <div className='app__form__content'>
           <div className='app__form__content__custom-input'>
-            <label for='username'>Username:</label>
+            <label htmlFor='username'>Username:</label>
             <input className='app__form__content__custom-input__username'
               type='text' name='username' id='username'
               placeholder='Username here' onChange={handleChange}
               value={user.username || ''}/>
           </div>
           <div className='app__form__content__custom-input'>
-            <label for='email'>Email:</label>
+            <label htmlFor='email'>Email:</label>
             <input className='app__form__content__custom-input__email'
               type='email' name='email' id='email'
               placeholder='Email here' onChange={handleChange}
               value={user.email || ''}/>
           </div>
           <div className='app__form__content__custom-input'>
-            <label for='password'>Password:</label>
+            <label htmlFor='password'>Password:</label>
             <input className='app__form__content__custom-input__password'
               type='password' name='password' id='password'
               placeholder='Password here' onChange={handleChange}
               value={user.password || ''}/>
           </div>
           <div className='app__form__content__custom-input'>
-            <label for='confirmPassword'>Confirm Password:</label>
+            <label htmlFor='confirmPassword'>Confirm Password:</label>
             <input className='app__form__content__custom-input__confirm-password'
               type='password' name='confirmPassword' id='confirmPassword'
               placeholder='Confirm password here' onChange={handleChange}

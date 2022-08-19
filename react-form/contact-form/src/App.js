@@ -67,7 +67,7 @@ function App() {
               onSubmit={handleSubmit}
             >
               <div className={`app__content__form__input-group ${errors.name ? 'error' : ''}`}>
-                <label for='name'>Name</label>
+                <label htmlFor='name'>Name</label>
                 <input 
                   className='app__content__form__input-group__name'
                   type='text'
@@ -78,7 +78,7 @@ function App() {
                 {<p className='app__content__form__input-group__error'>{errors.name}</p>}
               </div>
               <div className={`app__content__form__input-group ${errors.email ? 'error' : ''}`}>
-                <label for='email'>Email</label>
+                <label htmlFor='email'>Email</label>
                 <input 
                   className='app__content__form__input-group__email'
                   type='text'
@@ -89,7 +89,7 @@ function App() {
                 {<p className='app__content__form__input-group__error'>{errors.email}</p>}
               </div>
               <div className={`app__content__form__input-group ${errors.phone ? 'error' : ''}`}>
-                <label for='phone'>Phone</label>
+                <label htmlFor='phone'>Phone</label>
                 <input 
                   className='app__content__form__input-group__phone'
                   type='text'
@@ -100,7 +100,7 @@ function App() {
                 {<p className='app__content__form__input-group__error'>{errors.phone}</p>}
               </div>
               <div className={`app__content__form__input-group ${errors.message ? 'error' : ''}`}>
-                <label for='message'>Message</label>
+                <label htmlFor='message'>Message</label>
                 <textarea 
                   className='app__content__form__input-group__message'
                   id='message' name='message' placeholder='Enter message here'

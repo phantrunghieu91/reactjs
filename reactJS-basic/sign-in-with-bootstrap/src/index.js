@@ -17,7 +17,7 @@ root.render(
           id='float-email'
           placeholder='Email address'
         />
-        <label for='float-email'>Email address</label>
+        <label htmlFor='float-email'>Email address</label>
       </div>
       <div className='form-floating mb-3'>
         <input 
@@ -26,11 +26,11 @@ root.render(
           id='float-password'
           placeholder='Password'
         />
-        <label for='float-password'>Password</label>
+        <label htmlFor='float-password'>Password</label>
       </div>
       <div className="form-check mb-3 align-self-center">
         <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-        <label className="form-check-label" for="flexCheckDefault">
+        <label className="form-check-label" htmlFor="flexCheckDefault">
           Remember me
         </label>
       </div>

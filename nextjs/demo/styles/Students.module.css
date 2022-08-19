@@ -1,0 +1,13 @@
+.studentDisplay {
+    width: 60%;
+    border-collapse: collapse;    
+}
+
+.studentDisplay td {
+    text-align: center;
+}
+
+.studentDisplay td,
+.studentDisplay th {
+    border: .2rem solid black;
+}

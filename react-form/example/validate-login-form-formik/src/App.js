@@ -53,7 +53,7 @@ function App() {
               <div className={`app__form__content__input-group ${
                   errors.email ? 'error' : ''
                 }`}>
-                <label for='email'>Email</label>
+                <label htmlFor='email'>Email</label>
                 <input type='email' id='email' name='email'
                   onChange={handleChange} value={form.email || ''}
                   className='app__form__content__input-group__email'/>
@@ -62,7 +62,7 @@ function App() {
               <div className={`app__form__content__input-group ${
                   errors.password ? 'error' : ''
                 }`}>
-                <label for='password'>Password</label>
+                <label htmlFor='password'>Password</label>
                 <input type='password' id='password' name='password'
                   onChange={handleChange} value={(form.password ) || ''}
                   className='app__form__content__input-group__password'/>

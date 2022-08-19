@@ -33,6 +33,11 @@ export default function Layout({ children }) {
                                 <a>Signin</a>
                             </Link>
                         </li>
+                        <li>
+                            <Link href='/students'>
+                                <a>Student Management</a>
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
             </header>

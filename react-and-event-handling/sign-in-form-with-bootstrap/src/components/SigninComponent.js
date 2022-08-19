@@ -73,7 +73,7 @@ class SigninComponent extends Component {
                             onChange={this.handleInputChange}
                             value={form.username}
                         />
-                        <label for='floatUsernameInput'>Username</label>
+                        <label htmlFor='floatUsernameInput'>Username</label>
                     </div>
                     <div className="form-floating mb-3">
                         <input type='password'
@@ -84,7 +84,7 @@ class SigninComponent extends Component {
                             onChange={this.handleInputChange}
                             value={form.password}
                         />
-                        <label for='floatPasswordInput'>Password</label>
+                        <label htmlFor='floatPasswordInput'>Password</label>
                     </div>
                     <div className="form-check ms-5 mb-4">
                         <input type='checkbox'
@@ -92,7 +92,7 @@ class SigninComponent extends Component {
                             id='formCheckDefault'
                             onChange={this.handleRememberCheckboxChange}
                             value={form.isRemember}/>
-                        <label for='formCheckDefault' className="form-check-label">Remember me</label>
+                        <label htmlFor='formCheckDefault' className="form-check-label">Remember me</label>
                     </div>
                     <button className="btn btn-primary w-100">Sign in</button>
                 </form>

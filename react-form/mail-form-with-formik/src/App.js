@@ -46,7 +46,7 @@ function App() {
               onSubmit={handleSubmit}
             >
               <div className={`app__content__form__input-group ${errors.email ? 'error' : ''}`}>
-                <label for='email'>To</label>
+                <label htmlFor='email'>To</label>
                 <input 
                   className='app__content__form__input-group__email'
                   type='text'
@@ -58,7 +58,7 @@ function App() {
                 <p className='app__content__form__input-group__error'>{errors.email}</p>
               </div>
               <div className={`app__content__form__input-group ${errors.title ? 'error' : ''}`}>
-                <label for='title'>Title</label>
+                <label htmlFor='title'>Title</label>
                 <input 
                   className='app__content__form__input-group__title'
                   type='text'
@@ -70,7 +70,7 @@ function App() {
                 <p className='app__content__form__input-group__error'>{errors.title}</p>
               </div>
               <div className={`app__content__form__input-group ${errors.message ? 'error' : ''}`}>
-                <label for='message'>Message</label>
+                <label htmlFor='message'>Message</label>
                 <textarea 
                   className='app__content__form__input-group__title'
                   id='message'

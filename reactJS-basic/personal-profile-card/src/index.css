@@ -7,7 +7,7 @@
 :root {
   font-size: 62.5%;
   --avatar-size: 20rem;
-  --shadow: hsla(0, 0%, 69%, 0.74);
+  --shadow: hsla(214, 47%, 52%, 0.3);
 }
 
 body {
