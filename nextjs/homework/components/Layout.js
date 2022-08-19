@@ -26,6 +26,11 @@ const Layout = ({children}) => {
                                 <a>Covid Info</a>
                             </Link>
                         </li>
+                        <li className={styles['wrapper__header__navbar__list__item']}>
+                            <Link href='/weather'>
+                                <a>Weather</a>
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
             </header>

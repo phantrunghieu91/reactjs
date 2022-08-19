@@ -1,0 +1,63 @@
+@import './mixins';
+@import "./variables";
+
+.container {
+    @include sizeAndOverflow(100%, 100%, hidden);
+    @include dFlex(column, nowrap, flex-start, center);
+
+    &__header {
+        @include sizeAndOverflow(100%, 10%, hidden);
+        @include dFlex(row, nowrap, center, center);
+    }
+
+    &__weather {
+        @include sizeAndOverflow(60%, 20rem, hidden);
+        @include dFlex(row, nowrap, center, center);
+        min-height: 15rem;
+        background-color: $light-cyan;
+        padding: 1rem;
+        box-shadow: .5rem .5rem .5rem $dark-cyan;
+
+        &__icon {
+            width: 15rem;
+            aspect-ratio: 1 / 1;
+            margin-right: 2rem;
+
+            & img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        &__temperature {
+            height: 15rem;
+            aspect-ratio: 1;
+            @include dFlex(row, nowrap, flex-start, center);
+            margin-right: 2rem;
+
+            span {
+                display: block;
+                height: 100%;
+            }
+
+            span:first-of-type {
+                @include fontSize(10rem, 600);
+            }
+
+            span:last-of-type {
+                @include fontSize(5rem, 600);
+            }
+        }
+
+        &__detail {
+            height: 15rem;
+            width: fit-content;
+            @include dFlex(column, nowrap, center, flex-start);
+            font-size: 2rem;
+            
+            &__description {
+                text-transform: capitalize;
+            }
+        }
+    }
+}
