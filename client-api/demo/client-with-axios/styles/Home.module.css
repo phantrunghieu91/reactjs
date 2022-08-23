@@ -2,6 +2,21 @@
     padding: 2rem;
 }
 
+.navbar {
+    display: flex;
+}
+
+.navbar ul {
+    display: flex;
+    list-style-type: none;
+    display: flex;
+    font-size: 1.5rem;
+}
+
+.navbar ul li {
+    margin-left: 1rem;
+}
+
 .container__main table {
     border-collapse: collapse;
     font-size: 2rem;
