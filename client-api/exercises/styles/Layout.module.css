@@ -1,0 +1,54 @@
+.container {
+    width: 100%;  
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.header {
+    width: 100%;
+    height: 5rem;
+}
+
+.navbar {
+    width: 100%;
+    height: 100%;
+    background-color: var(--navbar-color);
+    display: flex;
+}
+
+.navbar ul {
+    list-style-type: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.navbar ul li {
+    margin-right: 2rem;
+}
+
+.navbar li a,
+.navbar li a:visited {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.navbar li a:hover {
+    color: var(--light-color-300);
+}
+
+.content {
+    width: 100%;
+    height: calc(100% - 5rem);
+    overflow: hidden;    
+    display: flex;
+    justify-content: center;
+}
