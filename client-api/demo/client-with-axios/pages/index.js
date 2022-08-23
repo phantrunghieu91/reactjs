@@ -72,6 +72,11 @@ class Home extends React.Component {
                 <a>Create</a>
               </Link>
             </li>
+            <li>
+              <Link href={`/articles`}>
+                <a>Articles</a>
+              </Link>
+            </li>
           </ul>
         </nav>
         <div className={styles['container__main']}>
