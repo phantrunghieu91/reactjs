@@ -13,7 +13,7 @@ class Home extends React.Component {
     };
   }
 
-  getUsers = () => {
+  getUsersWithPromise = () => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         axios
@@ -28,10 +28,18 @@ class Home extends React.Component {
       });
   };
 
+  getUsersWithAsync = async () => {
+    await new Promise(resolve => {
+      setTimeout(resolve, 3000);
+    });
+    return await axios.get(`http://localhost:3001/api/users`);
+  };
+
   componentDidMount = () => {
     this.setState({loading: true});
     if(this.state.users.length === 0) {
-      this.getUsers()
+      // this.getUsersWithPromise()
+      this.getUsersWithAsync()
         .then(res => {
           this.setState({users: res.data});
         })
