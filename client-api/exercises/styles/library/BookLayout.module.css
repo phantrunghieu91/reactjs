@@ -1,0 +1,11 @@
+.container {
+    width: 60%;
+    height: 100%;
+    overflow: hidden;
+    padding: 1rem;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    background-color: var(--primary-color-500);
+    box-shadow: 0 0 1rem var(--light-color-100);
+}

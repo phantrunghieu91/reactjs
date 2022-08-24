@@ -21,6 +21,11 @@ export default function Layout({ title, children }) {
                                 <a>Exercise 1 (Todolist)</a>
                             </Link>
                         </li>
+                        <li>
+                            <Link href='/books'>
+                                <a>Exercise 2 (Library)</a>
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
             </div>

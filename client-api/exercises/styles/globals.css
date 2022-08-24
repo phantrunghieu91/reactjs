@@ -16,6 +16,11 @@
   --bg-color: var(--primary-color);
   --navbar-color: var(--primary-color-700);
   --text-color: var(--light-color-100);
+
+  --edit-btn-300: hsla(120, 71%, 25%, 1);
+  --edit-btn-100: hsla(120, 68%, 33%, 1);
+  --delete-btn-300: hsla(0, 52%, 40%, 1);
+  --delete-btn-100: hsla(0, 62%, 50%, 1);
 }
 
 html,

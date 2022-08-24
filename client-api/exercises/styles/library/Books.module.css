@@ -1,0 +1,84 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    height: 5%;
+}
+
+.header__addNewBookBtn {
+    font-size: 1.2rem;
+    padding: .5rem 1rem;
+}
+
+.content {
+    width: 100%;
+    height: 95%;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.displayBooks {
+    width: 90%;
+    height: fit-content;
+    background-color: var(--light-color-100);
+    color: var(--primary-color-700);
+    border-collapse: collapse;
+}
+
+.displayBooks th,
+.displayBooks td {
+    padding: .5rem;
+}
+
+.displayBooks th {
+    background-color: var(--primary-color-100);
+    color: var(--light-color-100);
+    border-bottom: .2rem solid var(--primary-color-700);
+}
+
+.displayBooks td {
+    text-transform: capitalize;
+    border-bottom: .15rem solid var(--primary-color-100);
+}
+
+.displayBooks td:not(:first-of-type) {
+    text-align: center;
+}
+
+.displayBooks__book__btn-grp__edit-btn,
+.displayBooks__book__btn-grp__delete-btn {
+    padding: .5rem;
+    width: 6rem;
+    border: .0625rem solid currentColor;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.displayBooks__book__btn-grp__edit-btn a,
+.displayBooks__book__btn-grp__delete-btn a {
+    text-decoration: none;
+    color: white;
+}
+
+.displayBooks__book__btn-grp__edit-btn {
+    color: var(--light-color-100);
+    border-left: .1rem solid currentColor;
+    background-color: var(--edit-btn-300);
+}
+
+.displayBooks__book__btn-grp__edit-btn:hover {
+    background-color: var(--edit-btn-100);
+}
+
+.displayBooks__book__btn-grp__delete-btn {
+    transform: translateX(-.0625rem);
+    border: .0625rem solid currentColor;
+    color: var(--light-color-100);
+    background-color: var(--delete-btn-300);
+}
+
+.displayBooks__book__btn-grp__delete-btn:hover {
+    background-color: var(--delete-btn-100);
+}
