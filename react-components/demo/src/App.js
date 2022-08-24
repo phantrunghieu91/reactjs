@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Welcome from './components/Welcome.js';
 import AddComponent from './components/AddComponent.js';
+import BMICaculator from "./components/BMICaculator.js";
+import './App.css';
 
 class App extends React.Component {
   render() {
@@ -19,6 +21,7 @@ class App extends React.Component {
       <div className='container'>
         <Welcome name='Admin'/>
         <AddComponent firstNum={5} secondNum={2} />
+        <BMICaculator />
       </div>
     );
   }
