@@ -6,8 +6,9 @@
 
 :root {
   --primary-color: hsla(0, 0%, 10%, 1);
-  --primary-color-700: hsla(0, 0%, 23%, 1);
+  --primary-color-700: hsla(0, 0%, 7%, 1);
   --primary-color-500: hsla(0, 0%, 15%, 1);
+  --primary-color-100: hsla(0, 0%, 40%, 1);
   
   --light-color-100: hsla(0, 0%, 100%, 1);
   --light-color-300: hsla(0, 0%, 70%, 1);

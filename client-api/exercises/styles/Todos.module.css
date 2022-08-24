@@ -38,24 +38,82 @@
 
 .display-todos {
     width: 100%;
-    height: 86%;
+    height: 76%;
     overflow: auto;
 }
 
 .todo {
-    cursor: pointer;
+    width: 100%;
+    height: fit-content;
     padding: .3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hide {
+    display: none;
+}
+
+.delete-btn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    aspect-ratio: 1;
+    background-color: var(--light-color-100);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.delete-btn::before {
+    position: absolute;
+    content: '';
+    width: .15rem;
+    height: 1.2rem;
+    background-color: var(--primary-color-500);
+    transform: rotate(45deg);
+}
+
+.delete-btn::after {
+    position: absolute;
+    content: '';
+    width: .15rem;
+    height: 1.2rem;
+    background-color: var(--primary-color-500);
+    transform: rotate(-45deg);
+}
+
+.delete-btn:hover {
+    box-shadow: 0 0 .8rem var(--primary-color-500);
 }
 
 .todo:hover {
-    background-color: var(--light-color-300);
+    background-color: var(--primary-color-100);
     opacity: .8;
 }
 
 .todo-title {
     font-size: 1.5rem;
+    text-transform: capitalize;
+    cursor: pointer;
 }
 
 .completed {
     text-decoration: line-through;
+    color: var(--light-color-300);
+}
+
+.button-group {
+    width: 100%;
+    height: 10%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-group .toggle-completed {
+    padding: .5rem;
 }
