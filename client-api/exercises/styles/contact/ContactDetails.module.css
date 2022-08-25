@@ -1,0 +1,14 @@
+.contact-form {
+    width: 90%;
+    height: 95%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding-top: 3rem;
+}
+
+.contact-form button[type='submit'] {
+    padding: .5rem 1rem;
+    font-size: 1.3rem;
+    width: 80%;   
+}

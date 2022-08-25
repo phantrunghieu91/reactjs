@@ -10,6 +10,7 @@ export default function InputGroup(props){
                 <span className={css[`input-group__label__error`]}>{props.error}</span>
             </label>
             <input 
+                id={props.id}
                 className={css[`input-group__input`]}
                 name={props.name}
                 value={props.value}
