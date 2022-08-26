@@ -1,0 +1,13 @@
+.user-form {
+    width: 90%;
+    height: 25%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.user-form button[type='submit'] {
+    padding: .5rem 1rem;
+    font-size: 1.3rem;
+    width: 80%;   
+}

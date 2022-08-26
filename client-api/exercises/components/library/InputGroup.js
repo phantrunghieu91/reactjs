@@ -2,7 +2,7 @@ import css from '../../styles/library/InputGroup.module.css';
 
 export default function InputGroup(props){
     return (
-        <div className={css[`input-group`]}>
+        <div className={css[`input-group`]} style={props.style || {}}>
             <label htmlFor={props.id}
                 className={css[`input-group__label`]}
             >

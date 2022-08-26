@@ -1,0 +1,60 @@
+.display-users {
+    width: 90%;
+    height: fit-content;
+    background-color: var(--light-color-100);
+    color: var(--primary-color-700);
+    border-collapse: collapse;
+}
+
+.display-users th,
+.display-users td {
+    padding: .5rem;
+}
+
+.display-users th {
+    background-color: var(--primary-color-100);
+    color: var(--light-color-100);
+    border-bottom: .2rem solid var(--primary-color-700);
+}
+
+.display-users td {
+    text-transform: capitalize;
+    border-bottom: .15rem solid var(--primary-color-100);
+    text-align: center;
+}
+
+.display-users__user__btn-grp__edit-btn,
+.display-users__user__btn-grp__delete-btn {
+    padding: .5rem;
+    width: 6rem;
+    border: .0625rem solid currentColor;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.display-users__user__btn-grp__edit-btn a,
+.display-users__user__btn-grp__delete-btn a {
+    text-decoration: none;
+    color: white;
+}
+
+.display-users__user__btn-grp__edit-btn {
+    color: var(--light-color-100);
+    border-left: .1rem solid currentColor;
+    background-color: var(--edit-btn-300);
+}
+
+.display-users__user__btn-grp__edit-btn:hover {
+    background-color: var(--edit-btn-100);
+}
+
+.display-users__user__btn-grp__delete-btn {
+    transform: translateX(-.0625rem);
+    border: .0625rem solid currentColor;
+    color: var(--light-color-100);
+    background-color: var(--delete-btn-300);
+}
+
+.display-users__user__btn-grp__delete-btn:hover {
+    background-color: var(--delete-btn-100);
+}

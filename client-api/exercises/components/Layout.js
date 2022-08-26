@@ -31,6 +31,11 @@ export default function Layout({ title, children }) {
                                 <a>Exercise 3 (Contacts)</a>
                             </Link>
                         </li>
+                        <li>
+                            <Link href='/users'>
+                                <a>Exercise 4 (Users and Articles)</a>
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
             </div>
