@@ -39,7 +39,7 @@ class Calculator extends React.Component {
                     result: (prevState.firstNum * prevState.secondNum).toFixed(2)
                 }));
                 break;
-            case '/':
+            case '÷':
                 this.setState(prevState => ({
                     result: (prevState.firstNum / prevState.secondNum).toFixed(2)
                 }));
@@ -70,7 +70,7 @@ class Calculator extends React.Component {
                     <button className='calculator__operators__add' onClick={this.handleOperator}>+</button>
                     <button className='calculator__operators__subtract' onClick={this.handleOperator}>-</button>
                     <button className='calculator__operators__multiply' onClick={this.handleOperator}>*</button>
-                    <button className='calculator__operators__divide' onClick={this.handleOperator}>/</button>
+                    <button className='calculator__operators__divide' onClick={this.handleOperator}>÷</button>
                     <button className='calculator__operators__reset' onClick={this.handleOperator}>C</button>
                 </div>
             </div>

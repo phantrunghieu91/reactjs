@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .app {
   width: 100%;
   height: 100vh;
@@ -23,8 +27,16 @@ code {
   align-items: center;
 }
 
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 .calculator {
-  width: 50%;
+  width: 42%;
   height: 50%;
   background-color: aliceblue;
   display: flex;
@@ -48,4 +60,74 @@ code {
 .calculator__operators button {
   font-size: 30px;
   padding: 20px 30px;
+}
+
+.advance-calculator {
+  width: 42%;
+  height: 50%;
+  background-color: lightblue;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.result {
+  width: 100%;
+  height: 5rem;
+  background-color: black;
+  font-size: 3rem;
+  padding: 1rem;
+  color: white;
+  border: 0;
+  text-align: right;
+}
+
+.btn-group {
+  width: 100%;
+  height: calc(100% - 5rem);
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+}
+
+.btn-group button {
+  border-radius: 0;
+  border: .1rem solid darkgray;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all .35s ease;
+}
+
+.equal {
+  grid-column: 4;
+  grid-row: 2/6;
+  background-color: coral;
+}
+
+.equal:hover {
+  background-color: rgb(238, 119, 76);
+}
+
+.operator {
+  background-color: lightgray;
+}
+.operator:hover {
+  background-color: rgb(202, 201, 201);
+}
+
+.number,
+.decimal,
+.reset {
+  background-color: white;
+}
+
+.number:hover,
+.decimal:hover,
+.reset:hover {
+  background-color: rgb(228, 228, 228);
+}
+
+@media screen and (min-width: 100rem) {
+  .calculator,
+  .advance-calculator {
+    width: 30rem;
+  }
 }
