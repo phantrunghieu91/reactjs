@@ -1,15 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-function useCount() {
+function useCount(amount) {
     const [count, setCount] = useState(0);
 
-    const increaseAmount = amount => {
+    const increaseAmount = () => {
         setCount(count + amount);
     };
-
-    useEffect(() => {
-        document.title = `Count: ${count}`;
-    });
 
     return [count, increaseAmount];
 }
