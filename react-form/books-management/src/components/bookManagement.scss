@@ -1,0 +1,277 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    font-size: 62.5%;
+  }
+  
+  // mixin
+  @mixin sizeAndOverflow($w, $h, $overflow: auto) {
+    width: $w;
+    height: $h;
+    overflow: $overflow;
+  }
+  
+  @mixin displayFlex($direct, $wrap, $justify: flex-start, $align: flex-start, $display: flex){
+    display: $display;
+    flex-flow: $direct $wrap;
+    justify-content: $justify;
+    align-items: $align;
+  }
+  
+  @mixin fontSize($fs, $fw) {
+    font-size: $fs;
+    font-weight: $fw;
+  }
+  
+  @mixin shadowAround() {
+    box-shadow: 
+      .5rem .5rem 1rem rgba(0, 0, 0, 0.4),
+      -.5rem .5rem 1rem rgba(0, 0, 0, 0.4),
+      .5rem -.5rem 1rem rgba(0, 0, 0, 0.4),
+      -.5rem -.5rem 1rem rgba(0, 0, 0, 0.4);
+  }
+  
+  @mixin titleShadow($distance, $color: rgba(0, 0, 0, 1)){
+    text-shadow: $distance $distance 0 $color;
+  }
+  // variables
+  $dark-purple: rgb(97, 12, 99);
+  $pink-red: rgb(129, 9, 85);
+  $pink: rgb(209, 98, 150);
+  $light-yellow: rgb(255, 249, 215);
+  
+  // main
+  #root {
+    font-size: 2rem;
+    @include sizeAndOverflow(100%, 100vh, hidden);
+    @include displayFlex(column, nowrap, flex-start, center);
+    background-color: $pink-red;
+    color: $light-yellow;
+  }
+  
+  .app {
+    @include sizeAndOverflow(80%, 100%, hidden);
+    @include displayFlex(column, nowrap, flex-start, center);
+    background-color: $dark-purple;
+    flex: 0 0 auto;
+    box-shadow: 
+      1rem 0 1rem rgba(0, 0, 0, 0.4),
+      -1rem 0 1rem rgba(0, 0, 0, 0.4);
+  
+    &__header {
+      @include sizeAndOverflow(100%, 10%);
+      text-align: center;
+      flex: 0 0 auto;
+      padding: 2rem;
+      z-index: 1;
+  
+      &__title {
+        @include titleShadow(.5rem);
+      }
+    }
+  
+    &__content {
+      @include sizeAndOverflow(100%, 90%, hidden);
+      @include displayFlex(column, nowrap, flex-start, center);
+      z-index: 2;
+      padding-top: 1rem;
+  
+      &__form {
+        @include shadowAround();
+        @include sizeAndOverflow(80%, 25%);
+        @include displayFlex(column, nowrap, flex-start, flex-start);
+        background-color: $pink;
+        padding: 1rem 2rem;
+        color: $pink-red;
+  
+        &__header {
+          z-index: 3;
+          @include sizeAndOverflow(100%, fit-content);
+  
+          &__title {
+            @include titleShadow(.15rem, $light-yellow);
+          }
+        }
+  
+        &__content {
+          @include sizeAndOverflow(100%, auto, hidden);
+          flex: 1 0 auto;
+  
+          &__input-group {
+            @include sizeAndOverflow(100%, 50%);
+            @include displayFlex(row, nowrap, space-between, center);
+  
+            &__custom-input {
+              @include sizeAndOverflow(48%, 100%, hidden);
+              @include displayFlex(column, nowrap);
+              padding: 0.5rem 1rem;
+              $customInput: &;
+  
+              &__title, &__quantity {
+                width: 100%;
+                padding: 1rem;
+                @include fontSize(2rem, normal);
+                box-shadow: .3rem .3rem black;
+              }
+  
+              &__error {
+                @include sizeAndOverflow(100%, auto);
+                @include displayFlex(row, nowrap, flex-start, center);
+                flex: 1 0 auto;
+                padding: 0 2rem;
+                transition: all .35s ease-in-out;
+                color: rgba(0, 26, 141, 1);
+              }
+  
+              &.error {
+                input {
+                  outline: .3rem solid rgba(0, 26, 141, 1);
+                  border-radius: .3rem;
+                }
+  
+                #{$customInput}__error {
+                  color: white;
+                  background-color: rgb(189, 45, 45);
+                }
+              }
+            }
+          }
+          
+          &__button-group {
+            @include sizeAndOverflow(100%, 50%);
+            @include displayFlex(row, nowrap, space-between, center);
+  
+            &__submit, &__reset {
+              padding: 1rem;
+              cursor: pointer;
+              width: 48%;
+              @include fontSize(2rem, 600);
+              box-shadow: .3rem .3rem black;
+            }
+  
+            &__submit {
+              border-top-right-radius: 1.5rem;
+              border-bottom-left-radius: 1.5rem;
+              background: linear-gradient(to right, $light-yellow 50%, $pink-red 50%);
+              background-size: 201% 100%;
+              background-position: right bottom;
+              color: $light-yellow;
+              border: .2rem solid currentColor;
+              transition: all .35s ease-in-out;
+  
+              &:hover {
+                background-position: left bottom;
+                color: $pink-red;
+              }
+            }
+  
+            &__reset {
+              border-top-left-radius: 1.5rem;
+              border-bottom-right-radius: 1.5rem;
+              background: linear-gradient(to left, $pink-red 50%, $light-yellow 50%);
+              background-size: 200% 100%;
+              background-position: left bottom;
+              color: $pink-red;
+              border: .2rem solid currentColor;
+              transition: all .35s ease-in-out;
+  
+              &:hover {
+                background-size: 201% 100%;
+                background-position: right bottom;
+                color: $light-yellow;
+              }
+            }
+          }
+        }
+      }
+  
+      &__display-books {
+        @include shadowAround();
+        @include sizeAndOverflow(80%, 75%, hidden);
+        @include displayFlex(column, nowrap, flex-start, center);
+        padding: 1rem;
+        margin: 2rem 0;
+        background-color: $pink;
+        color: $pink-red;
+  
+        &__header {
+          @include sizeAndOverflow(100%, 10%);
+          text-align: left;
+          padding: 1rem;
+  
+          &__title {
+            @include titleShadow(.15rem, $light-yellow);
+          }
+        }
+  
+        &__table-container {
+          @include sizeAndOverflow(100%, 90%, auto);
+          overflow-x: hidden;
+  
+          &__table {
+            @include sizeAndOverflow(100%, fit-content);
+            border-collapse: collapse;
+            background-color: $light-yellow;
+  
+            & th {
+              background-color: $pink-red;
+              color: $light-yellow;
+            }
+  
+            & th, td {
+              border: .2rem solid $dark-purple;
+              padding: 1rem;
+            }
+  
+            & td {
+              text-align: center;
+            }
+  
+            & td:first-of-type {
+              text-transform: capitalize;
+            }
+  
+            &__book {
+              &__button-group {
+                & button {
+                  width: 40%;
+                  font-size: 2rem;
+                  padding: .5rem;
+                  cursor: pointer;
+                }
+                
+                &__edit {
+                  color: white;
+                  border: .2rem solid green;
+                  background-color: green;
+                  transition: all .35s ease;
+  
+                  &:hover {
+                    background-color: lighten($color: green, $amount: 5%);
+                  }
+                }
+  
+                &__delete {
+                  color: white;
+                  border: .2rem solid red;
+                  background-color: red;
+  
+                  &:hover {
+                    background-color: darken($color: red, $amount: 5%);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    @media screen and (min-width: 88rem) {
+      width: 88rem;
+    }
+  }

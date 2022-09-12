@@ -36,7 +36,7 @@ function App() {
     console.log('submitted!');
   };
 
-  const handleReset = e => {
+  const handleReset = () => {
     setBook({
       title: '',
       quantity: ''
@@ -47,7 +47,7 @@ function App() {
   const handleValidate = () => {
     console.log('Validating...');
     const errors = {};
-
+    
     if(!book.title) errors.title = 'Required';
 
     if(!book.quantity) errors.quantity = 'Required';
@@ -86,7 +86,7 @@ function App() {
                     />
                     <p className='app__content__form__content__input-group__custom-input__error'>{errors.title}</p>
                   </div>
-                  <div className={`app__content__form__content__input-group__custom-input ${errors.title ? 'error' : ''}`}>
+                  <div className={`app__content__form__content__input-group__custom-input ${errors.quantity ? 'error' : ''}`}>
                     <input 
                       className='app__content__form__content__input-group__custom-input__quantity'
                       type='text'
@@ -108,7 +108,7 @@ function App() {
                   <button
                     className='app__content__form__content__button-group__reset'
                     type='reset'
-                    onClick={handleReset}
+                    onReset={handleReset}
                   >
                     Reset
                   </button>
