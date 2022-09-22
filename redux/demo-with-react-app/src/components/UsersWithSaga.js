@@ -2,7 +2,7 @@ import { Main } from "./layouts/Main";
 import { useSelector } from "react-redux";
 import { useTitle } from "../hooks/useTitle";
 
-export default function Users() {
+export default function UsersWithSaga() {
     useTitle('Users');
     const users = useSelector(state => state.usersReducer.users);
     return (
