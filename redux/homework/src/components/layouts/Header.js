@@ -1,15 +1,18 @@
 import { Link } from 'react-router-dom';
 
-export const Header = () => {
+export const Header = ({ className, style }) => {
   return (
-    <header className='container-fluid p-0'>
+    <header
+      className={className}
+      style={style}
+    >
       <nav className='navbar navbar-dark navbar-expand-lg bg-dark'>
         <div className='container-fluid'>
           <Link
             to='/'
             className='navbar-brand'
           >
-            Demo redux
+            Redux Homework
           </Link>
           <button
             className='navbar-toggler'
@@ -43,6 +46,15 @@ export const Header = () => {
                   aria-current='page'
                 >
                   Users
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to='/posts'
+                  className='nav-link'
+                  aria-current='page'
+                >
+                  Posts
                 </Link>
               </li>
             </ul>
