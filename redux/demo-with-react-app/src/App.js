@@ -7,17 +7,37 @@ import UsersWithThunk from './components/UsersWithThunk';
 import SigninWithThunk from './components/SigninWithThunk';
 
 import store from './redux/store';
+import Todo from './components/todos/Todo';
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='/sign-in-saga' element={<SigninWithSaga />} />
-          <Route path='/users-saga' element={<UsersWithSaga />} />
-          <Route path='/sign-in-thunk' element={ <SigninWithThunk />} />
-          <Route path='/users-thunk' element={<UsersWithThunk />} />
+          <Route
+            path='/'
+            element={<Home />}
+          ></Route>
+          <Route
+            path='/sign-in-saga'
+            element={<SigninWithSaga />}
+          />
+          <Route
+            path='/users-saga'
+            element={<UsersWithSaga />}
+          />
+          <Route
+            path='/sign-in-thunk'
+            element={<SigninWithThunk />}
+          />
+          <Route
+            path='/users-thunk'
+            element={<UsersWithThunk />}
+          />
+          <Route
+            path='/todo'
+            element={<Todo />}
+          />
         </Routes>
       </BrowserRouter>
     </Provider>

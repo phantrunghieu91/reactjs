@@ -27,7 +27,7 @@ export default function SigninWithSaga() {
 
   useEffect(() => {
     if (userLogined.email) {
-      navigate('/users');
+      navigate('/users-thunk');
     } else {
       console.log('UserLogined not found');
     }

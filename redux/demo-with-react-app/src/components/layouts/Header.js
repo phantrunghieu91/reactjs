@@ -33,8 +33,7 @@ export const Header = () => {
               <li className='nav-item'>
                 <Link
                   to='/'
-                  className='nav-link active'
-                  aria-current='page'
+                  className='nav-link'
                 >
                   Home
                 </Link>
@@ -44,7 +43,6 @@ export const Header = () => {
                   <Link
                     to='/sign-in-saga'
                     className='nav-link'
-                    aria-current='page'
                   >
                     Sign in Saga
                   </Link>
@@ -52,7 +50,6 @@ export const Header = () => {
                   <Link
                     to='/users-saga'
                     className='nav-link'
-                    aria-current='page'
                   >
                     Users Saga
                   </Link>
@@ -63,7 +60,6 @@ export const Header = () => {
                   <Link
                     to='/sign-in-thunk'
                     className='nav-link'
-                    aria-current='page'
                   >
                     Sign in Thunk
                   </Link>
@@ -71,11 +67,18 @@ export const Header = () => {
                   <Link
                     to='/users-thunk'
                     className='nav-link'
-                    aria-current='page'
                   >
                     Users Thunk
                   </Link>
                 )}
+              </li>
+              <li>
+                <Link
+                  to='/todo'
+                  className='nav-link'
+                >
+                  Todo App
+                </Link>
               </li>
             </ul>
           </div>
