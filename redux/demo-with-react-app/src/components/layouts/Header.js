@@ -80,6 +80,22 @@ export const Header = () => {
                   Todo App
                 </Link>
               </li>
+              <li>
+                <Link
+                  to='/shopping'
+                  className='nav-link'
+                >
+                  Shopping cart
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to='/hacker-news'
+                  className='nav-link'
+                >
+                  Hacker News
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

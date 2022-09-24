@@ -10,6 +10,8 @@ export default function Home() {
         <li className='list-group-item'>Sign in with redux-saga</li>
         <li className='list-group-item'>Sign in with redux-thunk</li>
         <li className='list-group-item'>Todo App</li>
+        <li className='list-group-item'>Shopping cart (Still not working)</li>
+        <li className='list-group-item'>Hacker news</li>
       </ol>
     </Main>
   );

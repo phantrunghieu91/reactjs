@@ -8,6 +8,8 @@ import SigninWithThunk from './components/SigninWithThunk';
 
 import store from './redux/store';
 import Todo from './components/todos/Todo';
+import ShopPage from './components/shop/ShopPage';
+import HackerNews from './components/hacker-news';
 
 function App() {
   return (
@@ -15,7 +17,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route
-            path='/'
+            index
             element={<Home />}
           ></Route>
           <Route
@@ -37,6 +39,14 @@ function App() {
           <Route
             path='/todo'
             element={<Todo />}
+          />
+          <Route
+            path='/shopping'
+            element={<ShopPage />}
+          />
+          <Route
+            path='/hacker-news'
+            element={<HackerNews />}
           />
         </Routes>
       </BrowserRouter>

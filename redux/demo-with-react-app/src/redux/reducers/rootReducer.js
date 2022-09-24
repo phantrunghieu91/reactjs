@@ -3,10 +3,10 @@ import { loginReducer } from './loginReducer';
 import { usersReducer } from './usersReducer';
 import { todoReducer } from './todoReducer';
 
-const rootReducer = combineReducers({
+const sagaReducer = combineReducers({
   loginReducer,
   usersReducer,
   todoReducer,
 });
 
-export default rootReducer;
+export default sagaReducer;
