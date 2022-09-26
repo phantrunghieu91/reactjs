@@ -1,0 +1,14 @@
+{
+  "grocery": [
+    {
+      "id": 1,
+      "name": "Milk",
+      "quantity": 5
+    },
+    {
+      "id": 2,
+      "name": "Hot chocolate",
+      "quantity": 1
+    }
+  ]
+}
