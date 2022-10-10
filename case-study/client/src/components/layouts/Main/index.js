@@ -17,18 +17,25 @@ const MainLayout = ({ children }) => {
         fluid
         className='p-0 d-flex flex-grow-1'
       >
-        <Row className='w-100'>
+        <Row className='w-100 m-0'>
+          {username && (
+            <Col
+              xs={2}
+              sm={2}
+              md={2}
+              lg={2}
+              xl={1}
+              xxl={1}
+              className='p-0'
+            >
+              <SideBar />
+            </Col>
+          )}
+
           <Col
-            xs={2}
-            md={2}
-            lg={2}
-          >
-            {username && <SideBar />}
-          </Col>
-          <Col
-            xs={10}
-            md={10}
-            lg={10}
+            xs={username ? 10 : 12}
+            md={username ? 10 : 12}
+            lg={username ? 10 : 12}
           >
             {children}
           </Col>

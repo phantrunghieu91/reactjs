@@ -1,38 +1,38 @@
 import {useState} from 'react';
 import './App.css';
 
+const cars = ['Mecerdes S300', 'Audi R8', 'BMW Q5', 'Lamboghini Aventador'];
+const colors = ['black', 'aqua', 'red', 'yellow'];
+
 function App() {
   const [selectedCar, setSelectedCar] = useState({model: '', color: ''});
+
+  const handleChange = e => setSelectedCar({...selectedCar, [e.target.name]: e.target.value});
+
   return (
     <div className="select-car">
       <h1 className='select-car__title'>Select your dream car</h1>
       <label for='model'>Select a car: </label>
       <select id='model' 
-        onChange={(e) => {
-          const value = e.currentTarget.value;
-          setSelectedCar(prevState => ({
-            ...prevState, model: value
-          }))
-        }}
+        name='model'
+        onChange={handleChange}
         
         className='select-car__model'>
-        <option value='Mecerdes S300'>Mecerdes S300</option>
-        <option value='Audi R8'>Audi R8</option>
-        <option value='BMW Q5'>BMW Q5</option>
-        <option value='Lamboghini Aventador'>Lamboghini Aventador</option>
+        {
+          cars.map((car, index) => (
+            <option key={index} value={car}>{car}</option>
+          ))
+        }
       </select>
       <br />
       <label for='color'>Select a color: </label>
       <select id='color'
+        name='color'
         className='select-car__color'
-        onChange={(e) => {
-            const value = e.currentTarget.value;
-            setSelectedCar(prevState => ({...prevState, color: value}))
-          }}>
-          <option value='black'>Black</option>
-          <option value='aqua'>Aqua</option>
-          <option value='yellow'>Yellow</option>
-          <option value='red'>Red</option>
+        onChange={handleChange}>
+          {colors.map((color, index) => (
+            <option key={index} value={color}>{color}</option>
+          ))}
       </select>
       <br />
       <h3 className='select-car__result'>Your select car: {selectedCar.model} - {selectedCar.color}</h3>

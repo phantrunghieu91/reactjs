@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 function Timer(){
-    const [timer, setTimer] = useState(10);
+    const [timer, setTimer] = useState(5);
 
     useEffect(() => {
         let id = setInterval(() => {timer > 0 && setTimer(timer - 1)}, 1000);

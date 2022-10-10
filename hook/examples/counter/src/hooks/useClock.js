@@ -11,19 +11,19 @@ function useClock() {
         if(timeInfo.getHours() === 0){
             hour = 12;
         } else if(timeInfo.getHours() > 12) {
-            hour = timeInfo.getHours() - 12;
+            hour = `0${timeInfo.getHours() - 12}`;
         } else {
             hour = timeInfo.getHours;
         }
 
-        let miniute = timeInfo.getMinutes() > 10 ? timeInfo.getMinutes() : parseInt(`0${timeInfo.getMinutes()}`);
+        let minute = timeInfo.getMinutes() > 10 ? timeInfo.getMinutes() : `0${timeInfo.getMinutes()}`;
 
         let second = timeInfo.getSeconds() > 10 ? timeInfo.getSeconds() : `0${timeInfo.getSeconds()}`;
 
         let ampm = timeInfo.getHours() > 12 ? 'PM' : 'AM';
 
         setAppm(ampm);
-        setTime(`${hour}:${miniute}:${second}`);
+        setTime(`${hour}:${minute}:${second}`);
     }
 
     setInterval(updateTime, 1000);

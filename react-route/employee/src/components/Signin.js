@@ -16,15 +16,14 @@ const Signin = () => {
                     const errors = {};
 
                     if(!values.email) errors.email = 'Required';
-                    else if(values.email !== 'admin@gmail.com') errors.email = 'Wrong email';
 
                     if(!values.password) errors.password = 'Required';
-                    else if(values.password !== 'letmein') errors.password = 'Wrong password';
+                    // else if(values.password !== 'letmein') errors.password = 'Wrong password';
 
                     return errors;
                 }}
                 onSubmit={(values, actions) => {
-                    setTimeout(() => {
+                    values.email === 'admin@gmail.com' && values.password === 'letmein' && setTimeout(() => {
                         navigate('/employee', {state: {username: 'Admin'}});
                         // alert(JSON.stringify(values, null, 2));
                         actions.setSubmitting(false);
@@ -33,10 +32,11 @@ const Signin = () => {
             >
                 {props => (
                     <form className='app__signin__form' onSubmit={props.handleSubmit}>
+                        {/* {console.log(props)} */}
                         <div className={`app__signin__form__custom-input`}>
                             <label htmlFor='email'>
                                 <span>Email</span>
-                                <span className='app__signin__form__custom-input__error'>{props.errors.email}</span>
+                                <span className='app__signin__form__custom-input__error'>{props.touched.email && props.errors.email ? props.errors.email : ''}</span>
                             </label>
                             <input
                                 type='email'
@@ -49,7 +49,7 @@ const Signin = () => {
                         <div className={`app__signin__form__custom-input`}>
                             <label htmlFor='password'>
                                 <span>Password</span>
-                                <span className='app__signin__form__custom-input__error'>{props.errors.password}</span>
+                                <span className='app__signin__form__custom-input__error'>{props.touched.password && props.errors.password ? props.errors.password : ''}</span>
                             </label>
                             <input
                                 type='password'

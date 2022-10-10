@@ -13,7 +13,7 @@ export async function getStaticProps(context){
     }
 }
 
-const addDotToPriceDisplay = str => {
+const addDotToThousand = str => {
     let arr = str.toString().split('');
     for(let i = arr.length - 3; i >= 0; i-=3) {
         if(i == 0) break;
@@ -48,10 +48,10 @@ export default function CovidInfo({ covidData }) {
                                     covidDataArr.map((ele, index) => (
                                         <tr key={index}>
                                             <td>{ele.Date.split('T')[0]}</td>
-                                            <td>{addDotToPriceDisplay(ele.Confirmed)}</td>
-                                            <td>{addDotToPriceDisplay(ele.Active)}</td>
-                                            <td>{addDotToPriceDisplay(ele.Recovered)}</td>
-                                            <td>{addDotToPriceDisplay(ele.Deaths)}</td>
+                                            <td>{addDotToThousand(ele.Confirmed)}</td>
+                                            <td>{addDotToThousand(ele.Active)}</td>
+                                            <td>{addDotToThousand(ele.Recovered)}</td>
+                                            <td>{addDotToThousand(ele.Deaths)}</td>
                                         </tr>
                                     ))
                                 }

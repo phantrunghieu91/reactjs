@@ -85,7 +85,7 @@
         &.error {
           #{$inputGroupClass}__error {
             visibility: visible;
-            background-color: red;
+            background-color: rgb(143, 31, 31);
             color: white;
             padding: 0 2rem;
             @include displayFlex(row, nowrap, flex-start, center);

@@ -3,12 +3,7 @@ import {Formik} from 'formik';
 import './App.scss';
 
 function App() {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
-  });
+  const [form, setForm] = useState({});
 
   const REGEX = {
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
@@ -18,12 +13,7 @@ function App() {
   const handleChange = e => setForm({...form, [e.target.name]: e.target.value});
 
   const handleValidate = () => {
-    const errors = {
-      name: '',
-      email: '',
-      phone: '',
-      message: ''
-    };
+    const errors = {};
     if(!form.name) {
       errors.name = 'Required';
     } 
@@ -44,10 +34,11 @@ function App() {
     return errors;
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = () => {
     // e.preventDefault();
     alert('Success sent message!');
-    //alert(JSON.stringify(form, null, 2));
+    // alert(JSON.stringify(values, null, 2));
+    console.table(form);
   };
 
   return (
@@ -61,7 +52,7 @@ function App() {
           validate={handleValidate}
           onSubmit={handleSubmit}
         >
-          {({errors, handleSubmit}) => (
+          {( {errors, handleSubmit} ) => (
             <form 
               className='app__content__form'
               onSubmit={handleSubmit}

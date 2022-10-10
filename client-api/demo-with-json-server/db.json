@@ -3,7 +3,7 @@
     {
       "id": 1,
       "text": "Run or not ran",
-      "completed": true
+      "completed": false
     },
     {
       "text": "test 1",
@@ -12,7 +12,7 @@
     },
     {
       "text": "test 4 long",
-      "completed": true,
+      "completed": false,
       "id": 6
     },
     {
@@ -21,8 +21,8 @@
       "id": 7
     },
     {
-      "text": "test 2",
-      "completed": false,
+      "text": "test 2 3 4",
+      "completed": true,
       "id": 8
     }
   ]

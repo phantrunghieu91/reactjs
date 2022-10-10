@@ -2,7 +2,7 @@ import * as t from '../types';
 import axios from 'axios';
 
 const client = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com/posts',
+  baseURL: 'http://localhost:3001/posts',
 });
 
 const getPostsSuccess = posts => ({
@@ -17,6 +17,7 @@ const getPostSuccess = post => ({
 
 export const getPost = postID => async dispatch => {
   const response = await client.get(`/${postID}`);
+  console.log(response);
   dispatch(getPostSuccess(response.data));
 };
 

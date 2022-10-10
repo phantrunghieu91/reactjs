@@ -18,7 +18,7 @@ const Students = () => (
                         <td>{stu.id}</td>
                         <td>{stu.name}</td>
                         <td>
-                            <Link href={`/students/${encodeURIComponent(stu.id)}`}>
+                            <Link href={`/students/${stu.id}`}>
                                 <a>Show detail</a>
                             </Link>
                         </td>

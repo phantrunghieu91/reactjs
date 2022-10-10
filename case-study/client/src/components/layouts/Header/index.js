@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/esm/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signOut } from '../../../features/userSlice';
 
@@ -21,10 +21,12 @@ const Header = () => {
         className='d-flex'
       >
         <Navbar.Brand
-          as={Link}
+          as={NavLink}
           to='/'
+          className='active'
         >
-          MoneyManager
+          <i className='fa fa-money' />
+          &nbsp; MoneyManager
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='navbar' />
         <Navbar.Collapse id='navbar'>

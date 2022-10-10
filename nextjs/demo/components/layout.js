@@ -30,7 +30,7 @@ export default function Layout({ children }) {
                         </li>
                         <li>
                             <Link href='/signin'>
-                                <a>Signin</a>
+                                <a>Sign in</a>
                             </Link>
                         </li>
                         <li>

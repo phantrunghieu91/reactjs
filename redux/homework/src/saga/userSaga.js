@@ -7,7 +7,7 @@ import {
 } from '../redux/actions/userAction';
 
 const client = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com/users',
+  baseURL: 'http://localhost:3001/users',
 });
 
 function* getUsers() {

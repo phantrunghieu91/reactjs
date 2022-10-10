@@ -12,10 +12,8 @@ export default function Post() {
   const { post } = useSelector(state => state.postReducer);
 
   useEffect(() => {
-    if (!post.title) {
-      dispatch(getPost(postID));
-    }
-  });
+    dispatch(getPost(postID));
+  }, [postID]);
 
   return (
     <Main>
