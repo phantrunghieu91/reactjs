@@ -1,0 +1,306 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "firstname": "ad",
+      "lastname": "min",
+      "email": "admin@gmail.com",
+      "password": "letmein",
+      "walletId": null
+    },
+    {
+      "id": 2,
+      "username": "raejin91",
+      "firstname": "Kim ",
+      "lastname": "Rae Jin",
+      "email": "phantrunghieu@gmail.com",
+      "password": "asdasd",
+      "walletId": 1
+    }
+  ],
+  "wallets": [
+    {
+      "id": 1,
+      "userId": 1,
+      "name": "Saving",
+      "balance": 0,
+      "currency": "VND"
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "type": "income",
+      "categoryId": 2,
+      "amount": 5000000,
+      "note": "",
+      "date": "2022-09-27",
+      "walletId": 1
+    },
+    {
+      "id": 2,
+      "type": "expense",
+      "categoryId": 5,
+      "amount": 60000,
+      "note": "",
+      "date": "2022-09-27",
+      "walletId": 1
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "expense"
+    },
+    {
+      "id": 2,
+      "name": "debt/loan"
+    },
+    {
+      "id": 3,
+      "name": "income"
+    }
+  ],
+  "expenseCategories": [
+    {
+      "id": 1,
+      "name": "Food & Beverage",
+      "tag": "Required expense",
+      "description": ""
+    },
+    {
+      "id": 2,
+      "name": "Transportation",
+      "tag": "Required expense",
+      "description": ""
+    },
+    {
+      "id": 3,
+      "name": "Rentals",
+      "tag": "Required expense",
+      "description": ""
+    },
+    {
+      "id": 4,
+      "name": "Water Bill",
+      "tag": "Required expense",
+      "description": ""
+    },
+    {
+      "id": 5,
+      "name": "Phone Bill",
+      "tag": "Required expense",
+      "description": ""
+    },
+    {
+      "id": 6,
+      "name": "Electricity Bill",
+      "tag": "Required expense",
+      "description": ""
+    },
+    {
+      "id": 7,
+      "name": "Gas Bill",
+      "tag": "Required expense",
+      "description": ""
+    },
+    {
+      "id": 8,
+      "name": "Television Bill",
+      "tag": "Required expense",
+      "description": ""
+    },
+    {
+      "id": 9,
+      "name": "Internet Bill",
+      "tag": "Required expense",
+      "description": ""
+    },
+    {
+      "id": 10,
+      "name": "Other Utility Bills",
+      "tag": "Required expense",
+      "description": ""
+    },
+    {
+      "id": 11,
+      "name": "Home Maintenance",
+      "tag": "Up & Comer",
+      "description": ""
+    },
+    {
+      "id": 12,
+      "name": "Vehicle Maintenance",
+      "tag": "Up & Comer",
+      "description": ""
+    },
+    {
+      "id": 13,
+      "name": "Medical Check Up",
+      "tag": "Up & Comer",
+      "description": ""
+    },
+    {
+      "id": 14,
+      "name": "Insurances",
+      "tag": "Up & Comer",
+      "description": ""
+    },
+    {
+      "id": 15,
+      "name": "Education",
+      "tag": "Up & Comer",
+      "description": ""
+    },
+    {
+      "id": 16,
+      "name": "Houseware",
+      "tag": "Up & Comer",
+      "description": ""
+    },
+    {
+      "id": 17,
+      "name": "Personal Items",
+      "tag": "Up & Comer",
+      "description": ""
+    },
+    {
+      "id": 18,
+      "name": "Pets",
+      "tag": "Up & Comer",
+      "description": ""
+    },
+    {
+      "id": 19,
+      "name": "Home services",
+      "tag": "Up & Comer",
+      "description": ""
+    },
+    {
+      "id": 20,
+      "name": "Other Expense",
+      "tag": "Up & Comer",
+      "description": ""
+    },
+    {
+      "id": 21,
+      "name": "Fitness",
+      "tag": "Fun & Relax",
+      "description": ""
+    },
+    {
+      "id": 22,
+      "name": "Makeup",
+      "tag": "Fun & Relax",
+      "description": ""
+    },
+    {
+      "id": 23,
+      "name": "Gifts & Donations",
+      "tag": "Fun & Relax",
+      "description": ""
+    },
+    {
+      "id": 24,
+      "name": "Streaming Service",
+      "tag": "Fun & Relax",
+      "description": ""
+    },
+    {
+      "id": 25,
+      "name": "Fun Money",
+      "tag": "Fun & Relax",
+      "description": ""
+    },
+    {
+      "id": 26,
+      "name": "Investment",
+      "tag": "Investing & Debt Payments",
+      "description": ""
+    },
+    {
+      "id": 27,
+      "name": "Pay Interest",
+      "tag": "Investing & Debt Payments",
+      "description": ""
+    },
+    {
+      "id": 28,
+      "name": "Outgoing Transfer",
+      "tag": "Other",
+      "description": ""
+    }
+  ],
+  "debtLoanCategories": [
+    {
+      "id": 1,
+      "name": "Debt Collection",
+      "tag": "Investing & Debt Payments",
+      "description": ""
+    },
+    {
+      "id": 2,
+      "name": "Debt",
+      "tag": "Investing & Debt Payments",
+      "description": ""
+    },
+    {
+      "id": 3,
+      "name": "Loan",
+      "tag": "Investing & Debt Payments",
+      "description": ""
+    },
+    {
+      "id": 4,
+      "name": "Repayment",
+      "tag": "Investing & Debt Payments",
+      "description": ""
+    }
+  ],
+  "incomeCategories": [
+    {
+      "id": 1,
+      "name": "Collect interest",
+      "tag": "Investing & Debt Payments",
+      "description": ""
+    },
+    {
+      "id": 2,
+      "name": "Salary",
+      "tag": "Income",
+      "description": ""
+    },
+    {
+      "id": 3,
+      "name": "Other Income",
+      "tag": "Income",
+      "description": ""
+    },
+    {
+      "id": 4,
+      "name": "Incoming Transfer",
+      "tag": "Other",
+      "description": ""
+    }
+  ],
+  "currencies": {
+    "CAD": "Canadian Dollar",
+    "CLP": "Chilean Peso",
+    "CNY": "Chinese Yuan",
+    "CUP": "Cuban Peso",
+    "EUR": "Euro",
+    "HKD": "Hong Kong Dollar",
+    "IDR": "Indonesian Rupiah",
+    "JPY": "Japanese Yen",
+    "KRW": "South Korean Won",
+    "MXN": "Mexican Peso",
+    "MYR": "Malaysian Ringgit",
+    "NZD": "New Zealand Dollar",
+    "PHP": "Philippine Peso",
+    "RUB": "Russian Ruble",
+    "THB": "Thai Baht",
+    "TWD": "New Taiwan Dollar",
+    "VND": "Vietnamese Dong"
+  }
+}
