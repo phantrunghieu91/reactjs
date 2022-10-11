@@ -9,11 +9,7 @@ const FloatInput = ({ name, type, id, label }) => {
         const isValid = !form.errors[field.name];
         const isInvalid = form.touched[field.name] && !isValid;
         return (
-          <FloatLabel
-            controlId={id}
-            label={label}
-            className='mb-3'
-          >
+          <FloatLabel controlId={id} label={label} className='mb-3'>
             <Form.Control
               {...field}
               type={type}
@@ -22,10 +18,7 @@ const FloatInput = ({ name, type, id, label }) => {
               placeholder={label}
               className='mb-3'
             />
-            <Form.Control.Feedback
-              type='invalid'
-              className='px-3 py-1 fs-4'
-            >
+            <Form.Control.Feedback type='invalid' className='px-3 py-1 fs-4'>
               {form.errors[field.name]}
             </Form.Control.Feedback>
           </FloatLabel>

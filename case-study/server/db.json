@@ -6,8 +6,7 @@
       "firstname": "ad",
       "lastname": "min",
       "email": "admin@gmail.com",
-      "password": "letmein",
-      "walletId": null
+      "password": "letmein"
     },
     {
       "id": 2,
@@ -15,17 +14,16 @@
       "firstname": "Kim ",
       "lastname": "Rae Jin",
       "email": "phantrunghieu@gmail.com",
-      "password": "asdasd",
-      "walletId": 1
+      "password": "asdasd"
     }
   ],
   "wallets": [
     {
-      "id": 1,
-      "userId": 1,
-      "name": "Saving",
+      "name": "Changed v2",
       "balance": 0,
-      "currency": "VND"
+      "currency": "VND",
+      "id": 1,
+      "userId": 2
     }
   ],
   "transactions": [
@@ -46,20 +44,6 @@
       "note": "",
       "date": "2022-09-27",
       "walletId": 1
-    }
-  ],
-  "categories": [
-    {
-      "id": 1,
-      "name": "expense"
-    },
-    {
-      "id": 2,
-      "name": "debt/loan"
-    },
-    {
-      "id": 3,
-      "name": "income"
     }
   ],
   "expenseCategories": [

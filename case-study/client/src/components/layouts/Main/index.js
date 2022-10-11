@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import Header from '../Header';
 import SideBar from '../SideBar';
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ className, children }) => {
   const { username } = useSelector(state => state.user.userInfo);
 
   return (
@@ -36,6 +36,7 @@ const MainLayout = ({ children }) => {
             xs={username ? 10 : 12}
             md={username ? 10 : 12}
             lg={username ? 10 : 12}
+            className={className}
           >
             {children}
           </Col>
