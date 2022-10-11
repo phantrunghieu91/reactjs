@@ -3,7 +3,6 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import FloatInput from '../SignIn/FloatInput';
 import { Formik } from 'formik';
 import { updateWallet } from '../../features/walletSlice';
-import SelectElement from './SelectElement';
 
 const AdjustBalanceModal = ({ wallet, userId, dispatch, handleClose, show }) => {
   return (
@@ -31,7 +30,13 @@ const AdjustBalanceModal = ({ wallet, userId, dispatch, handleClose, show }) => 
           <Modal.Header className='fw-bold fs-4'>Adjust balance</Modal.Header>
           <Modal.Body>
             <Form className='px-5' noValidate onSubmit={handleSubmit} id='adjustBalance'>
-              <SelectElement id='walletName' name='name' label={`Wallet's name`} />
+              <FloatInput
+                id='walletName'
+                name='name'
+                label={`Wallet's name`}
+                type='text'
+                disabled={true}
+              />
               <FloatInput id='balance' name='balance' label='Initial balance' type='text' />
             </Form>
           </Modal.Body>

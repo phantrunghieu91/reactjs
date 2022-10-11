@@ -12,7 +12,7 @@ const sidebarItems = [
   {
     label: 'Transaction',
     path: '/transaction',
-    iconClassName: 'fa fa-google-wallet fa-2x',
+    iconClassName: 'fa fa-money fa-2x',
   },
   {
     label: 'Report',
@@ -24,20 +24,12 @@ const sidebarItems = [
 const SideBar = () => {
   const location = useLocation();
   return (
-    <Navbar
-      variant='dark'
-      bg='dark'
-      className='h-100 text-secondary d-flex align-items-start pt-3'
-    >
+    <Navbar variant='dark' bg='dark' className='h-100 text-secondary d-flex align-items-start pt-3'>
       <Nav
         activeKey={location.pathname}
-        className=' d-flex flex-column justify-content-start align-items-center w-100'
-      >
+        className=' d-flex flex-column justify-content-start align-items-center w-100'>
         {sidebarItems.map((item, index) => (
-          <SideBarItem
-            {...item}
-            key={index}
-          />
+          <SideBarItem {...item} key={index} />
         ))}
       </Nav>
     </Navbar>

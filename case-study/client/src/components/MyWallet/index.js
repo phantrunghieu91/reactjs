@@ -3,6 +3,7 @@ import { Button, ButtonGroup, Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getCurrencyList } from '../../features/walletSlice';
+import convertDecimal from '../../hooks/convertDecimal';
 import MainLayout from '../layouts/Main';
 import AdjustBalanceModal from './AdjustBalanceModal';
 import CreateNewWallet from './CreateNewWallet';
@@ -33,7 +34,7 @@ const MyWallet = () => {
   if (!walletInfo.id) return <CreateNewWallet currencyList={currencyList} userId={userId} />;
   else
     return (
-      <MainLayout className='d-flex align-items-center'>
+      <MainLayout>
         <DeleteModal
           show={showModal.delete}
           handleClose={handleClose}
@@ -86,7 +87,7 @@ const MyWallet = () => {
             <Col className='border-bottom px-5 m-0 h-25 d-flex flex-column justify-content-center'>
               <h3 className='fw-semibold'>{walletInfo.name ? walletInfo.name : ''}</h3>
               <p className='m-0'>
-                {`${walletInfo.balance} ${
+                {`${convertDecimal(walletInfo.balance.toString())} ${
                   walletInfo.currency
                     ? currencyList.filter(curr => curr[0] === walletInfo.currency).map(e => e[1])
                     : ''
