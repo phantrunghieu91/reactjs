@@ -1,0 +1,29 @@
+.transactionItem {
+  cursor: pointer;
+}
+.transactionItem:hover {
+  background-color: hsl(152, 61%, 90%);
+}
+
+.categoryModal {
+  --bs-modal-zindex: 1065 !important;
+}
+
+.categoryModalDiaglog {
+  --bs-modal-zindex: 1065 !important;
+}
+
+.categoryBackdrop {
+  --bs-backdrop-zindex: 1060 !important;
+}
+
+.transactionDetail,
+.transactionListContainer {
+  transition: all 1.5s ease-in-out !important;
+}
+
+#transactionList {
+  height: 92%;
+  scrollbar-color: rgb(197, 197, 197) gray;
+  scrollbar-width: thin;
+}

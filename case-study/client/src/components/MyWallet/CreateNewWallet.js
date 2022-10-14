@@ -13,9 +13,7 @@ const CreateNewWallet = ({ currencyList, userId }) => {
   return (
     <MainLayout>
       <Container className='mt-3 bg-light rounded-4 p-3 w-75'>
-        <h3 className='border-bottom mb-3 border-dark pb-3'>
-          Add a wallet first
-        </h3>
+        <h3 className='border-bottom mb-3 border-dark pb-3'>Add a wallet first</h3>
         <Formik
           initialValues={{
             name: '',
@@ -23,10 +21,7 @@ const CreateNewWallet = ({ currencyList, userId }) => {
             currency: '',
           }}
           validationSchema={yup.object().shape({
-            name: yup
-              .string()
-              .min(6, 'Must have at least 6 chars')
-              .required('Required'),
+            name: yup.string().min(6, 'Must have at least 6 chars').required('Required'),
             balance: yup.number(),
             currency: yup.string().required('Required'),
           })}
@@ -40,41 +35,16 @@ const CreateNewWallet = ({ currencyList, userId }) => {
                 userId,
               })
             );
-          }}
-        >
+          }}>
           {({ handleSubmit, isValid }) => (
-            <Form
-              className='py-3 px-5'
-              noValidate
-              onSubmit={handleSubmit}
-            >
-              <FloatInput
-                id='walletName'
-                name='name'
-                label={`Wallet's name`}
-                type='text'
-              />
+            <Form className='py-3 px-5' noValidate onSubmit={handleSubmit}>
+              <FloatInput id='walletName' name='name' label={`Wallet's name`} type='text' />
               <Row className='mb-3'>
-                <Form.Group
-                  as={Col}
-                  md={6}
-                >
-                  <SelectElement
-                    data={currencyList}
-                    name='currency'
-                    label='Currency'
-                  />
+                <Form.Group as={Col} md={6}>
+                  <SelectElement data={currencyList} name='currency' label='Currency' />
                 </Form.Group>
-                <Form.Group
-                  as={Col}
-                  md={6}
-                >
-                  <FloatInput
-                    id='balance'
-                    name='balance'
-                    label='Initial balance'
-                    type='text'
-                  />
+                <Form.Group as={Col} md={6}>
+                  <FloatInput id='balance' name='balance' label='Initial balance' type='text' />
                 </Form.Group>
               </Row>
               <Button

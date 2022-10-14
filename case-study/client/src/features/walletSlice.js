@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { createNewTransaction } from './transactionSlice';
+import { createNewTransaction, deleteAllTransactions } from './transactionSlice';
 import useCurrentDate from '../hooks/useCurrentDate';
+import useTransactionNumberType from '../hooks/useTransactionNumberType';
 
 // const client = axios.create({
 //   baseURL: 'https://api.apilayer.com/currency_data',
@@ -52,7 +53,7 @@ export const createWallet = createAsyncThunk(
       const finalData = data;
       if (data.balance > 0) {
         const newTransaction = {
-          categoryId: 2,
+          categoryId: 3,
           type: 'income',
           amount: data.balance,
           note: 'Initial Balance',
@@ -70,15 +71,78 @@ export const createWallet = createAsyncThunk(
 
 export const updateWallet = createAsyncThunk('wallet/updateWallet', async (wallet, thunkApi) => {
   try {
+    const { balance } = thunkApi.getState().wallet.walletInfo;
     const { data } = await client.put(`/wallets/${wallet.id}`, wallet);
+    if (data.balance !== balance) {
+      const amount = data.balance - balance;
+      const newTransaction = {
+        categoryId: amount > 0 ? 3 : 20,
+        type: amount > 0 ? 'income' : 'expense',
+        amount: Math.abs(amount),
+        note: 'Initial Balance',
+        date: useCurrentDate(),
+        walletId: data.id,
+      };
+      thunkApi.dispatch(createNewTransaction(newTransaction));
+    }
     return data;
   } catch (error) {
     console.log(`Update Wallet error: ${error}`);
   }
 });
 
+export const adjustBalance = createAsyncThunk(
+  'wallet/adjustBalance',
+  async (newBalance, thunkApi) => {
+    try {
+      const wallet = thunkApi.getState().wallet.walletInfo;
+      const { data } = await client.put(`/wallets/${wallet.id}`, {
+        ...wallet,
+        balance: newBalance,
+      });
+      if (newBalance !== wallet.balance) {
+        const amount = newBalance - wallet.balance;
+        const newTransaction = {
+          categoryId: amount > 0 ? 3 : 20,
+          type: amount > 0 ? 'income' : 'expense',
+          amount: Math.abs(amount),
+          note: 'Adjust balance',
+          date: useCurrentDate(),
+          walletId: wallet.id,
+        };
+        thunkApi.dispatch(createNewTransaction(newTransaction));
+        return data;
+      }
+    } catch (error) {
+      console.log(`Adjust balance error: ${error.response.messages}`);
+    }
+  }
+);
+
+export const transactionBalanceChange = createAsyncThunk(
+  'wallet/transactionBalanceChange',
+  async (transaction, thunkApi) => {
+    try {
+      const amount = +`${useTransactionNumberType(transaction.type, transaction.categoryId)}${
+        transaction.amount
+      }`;
+      const { walletInfo: wallet } = thunkApi.getState().wallet;
+      const { data } = await client.put(`/wallets/${wallet.id}`, {
+        ...wallet,
+        balance: wallet.balance + +amount,
+      });
+      return data;
+    } catch (error) {
+      console.log(
+        `Change balance when transaction change/create error: ${error.response.messages}`
+      );
+    }
+  }
+);
+
 export const deleteWallet = createAsyncThunk('wallet/deleteWallet', async (walletId, thunkApi) => {
   try {
+    thunkApi.dispatch(deleteAllTransactions());
     const resp = await client.delete(`/wallets/${walletId}`);
     return resp.data;
   } catch (error) {
@@ -95,7 +159,11 @@ const initialState = {
 const walletSlice = createSlice({
   name: 'wallet',
   initialState,
-  reducers: {},
+  reducers: {
+    clearWallet: state => {
+      state.walletInfo = {};
+    },
+  },
   extraReducers: {
     [getCurrencyList.pending]: state => {},
     [getCurrencyList.fulfilled]: (state, { payload }) => {
@@ -127,6 +195,18 @@ const walletSlice = createSlice({
       state.walletInfo = payload;
     },
     [updateWallet.rejected]: state => {},
+    // Adjust balance
+    [adjustBalance.pending]: state => {},
+    [adjustBalance.fulfilled]: (state, { payload }) => {
+      state.walletInfo = payload;
+    },
+    [adjustBalance.rejected]: state => {},
+    // Adjust balance when add/edit transaction
+    [transactionBalanceChange.pending]: state => {},
+    [transactionBalanceChange.fulfilled]: (state, { payload }) => {
+      state.walletInfo = payload;
+    },
+    [transactionBalanceChange.rejected]: state => {},
     // Delete wallet
     [deleteWallet.pending]: state => {},
     [deleteWallet.fulfilled]: (state, { payload }) => {
@@ -135,5 +215,7 @@ const walletSlice = createSlice({
     [deleteWallet.rejected]: state => {},
   },
 });
+
+export const { clearWallet } = walletSlice.actions;
 
 export default walletSlice.reducer;

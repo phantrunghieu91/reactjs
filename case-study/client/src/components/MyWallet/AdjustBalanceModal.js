@@ -2,7 +2,7 @@ import * as yup from 'yup';
 import { Button, Form, Modal } from 'react-bootstrap';
 import FloatInput from '../SignIn/FloatInput';
 import { Formik } from 'formik';
-import { updateWallet } from '../../features/walletSlice';
+import { adjustBalance } from '../../features/walletSlice';
 
 const AdjustBalanceModal = ({ wallet, userId, dispatch, handleClose, show }) => {
   return (
@@ -17,7 +17,7 @@ const AdjustBalanceModal = ({ wallet, userId, dispatch, handleClose, show }) => 
       })}
       enableReinitialize={true}
       onSubmit={values => {
-        dispatch(updateWallet({ ...values, id: wallet.id, balance: +values.balance, userId }));
+        dispatch(adjustBalance(+values.balance));
         handleClose('adjustBalance');
       }}>
       {({ handleSubmit }) => (

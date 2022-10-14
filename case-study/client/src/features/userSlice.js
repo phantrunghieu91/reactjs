@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { getCategories } from './categoriesSlice';
+import { clearTransactions } from './transactionSlice';
+import { clearWallet, getCurrencyList } from './walletSlice';
 
 const client = axios.create({
   baseURL: 'http://localhost:3001',
@@ -12,8 +15,11 @@ export const getUserByUsername = createAsyncThunk(
       const { data } = await client.get(`/users/?username=${requestData.username}`);
       if (data.length === 0) return { error: 'Username isnt exist!' };
       else {
-        if (data[0].password === requestData.password) return { user: data[0], error: null };
-        else return { error: 'Username or password is wrong!' };
+        if (data[0].password === requestData.password) {
+          thunkApi.dispatch(getCategories());
+          thunkApi.dispatch(getCurrencyList());
+          return { user: data[0], error: null };
+        } else return { error: 'Username or password is wrong!' };
       }
     } catch (error) {
       console.log(`Get user error: ${error}`);
@@ -49,6 +55,16 @@ export const createNewUser = createAsyncThunk('user/createNewUser', async (user,
   }
 });
 
+export const signOut = createAsyncThunk('user/signOut', async (_, thunkApi) => {
+  try {
+    thunkApi.dispatch(clearTransactions());
+    thunkApi.dispatch(clearWallet());
+    return true;
+  } catch (error) {
+    console.log(`Sign out error : ${error.response.messages}`);
+  }
+});
+
 const initialState = {
   isloading: false,
   userInfo: {},
@@ -58,11 +74,7 @@ const initialState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-    signOut: state => {
-      state.userInfo = {};
-    },
-  },
+  reducers: {},
   extraReducers: {
     // Get user by username reducer
     [getUserByUsername.pending]: state => {
@@ -96,9 +108,15 @@ const userSlice = createSlice({
       }
     },
     [createNewUser.rejected]: state => {},
+    // Sign out
+    [signOut.pending]: state => {},
+    [signOut.fulfilled]: (state, { payload }) => {
+      if (payload) state.userInfo = {};
+    },
+    [signOut.rejected]: state => {},
   },
 });
 
-export const { signOut } = userSlice.actions;
+// export const {  } = userSlice.actions;
 
 export default userSlice.reducer;

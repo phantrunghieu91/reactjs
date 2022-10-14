@@ -2,36 +2,18 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 const client = axios.create({ baseURL: 'http://localhost:3001' });
 
-export const getIncomeCategories = createAsyncThunk('categories/getIncomeCateogories', async () => {
+export const getCategories = createAsyncThunk('categories/getCategories', async () => {
   try {
-    const { data: income } = await client.get(`/incomeCategories`);
-    return income;
+    const incomePromise = client.get(`/incomeCategories`);
+    const expensePromise = client.get(`/expenseCategories`);
+    const debtnLoadPromise = client.get(`/debtLoanCategories`);
+    const responses = await Promise.allSettled([incomePromise, expensePromise, debtnLoadPromise]);
+    const finalData = responses.map(resp => resp.value.data);
+    return finalData;
   } catch (error) {
-    console.log(`get income categories error : ${error.response.data}`);
+    console.log(`get categories error : ${error.response.messages}`);
   }
 });
-export const getExpenseCategories = createAsyncThunk(
-  'categories/getExpenseCateogories',
-  async () => {
-    try {
-      const { data: expense } = await client.get(`/expenseCategories`);
-      return expense;
-    } catch (error) {
-      console.log(`get expense categories error : ${error.response.data}`);
-    }
-  }
-);
-export const getDebtLoanCategories = createAsyncThunk(
-  'categories/getDebtLoanCateogories',
-  async () => {
-    try {
-      const { data: debtLoan } = await client.get(`/debtLoanCategories`);
-      return debtLoan;
-    } catch (error) {
-      console.log(`get debt n loan categories error : ${error.response.data}`);
-    }
-  }
-);
 
 const initialState = {
   income: [],
@@ -44,21 +26,24 @@ const categoriesSlice = createSlice({
   initialState,
   reducer: {},
   extraReducers: {
-    [getExpenseCategories.pending]: state => {},
-    [getExpenseCategories.fulfilled]: (state, { payload }) => {
-      state.expense = payload;
+    [getCategories.pending]: state => {},
+    [getCategories.fulfilled]: (state, { payload }) => {
+      payload.forEach((category, index) => {
+        switch (index) {
+          case 0:
+            state.income = category;
+            break;
+          case 1:
+            state.expense = category;
+            break;
+          case 2:
+            state.debtLoan = category;
+            break;
+          default:
+        }
+      });
     },
-    [getExpenseCategories.rejected]: state => {},
-    [getIncomeCategories.pending]: state => {},
-    [getIncomeCategories.fulfilled]: (state, { payload }) => {
-      state.income = payload;
-    },
-    [getIncomeCategories.rejected]: state => {},
-    [getDebtLoanCategories.pending]: state => {},
-    [getDebtLoanCategories.fulfilled]: (state, { payload }) => {
-      state.debtLoan = payload;
-    },
-    [getDebtLoanCategories.rejected]: state => {},
+    [getCategories.rejected]: state => {},
   },
 });
 

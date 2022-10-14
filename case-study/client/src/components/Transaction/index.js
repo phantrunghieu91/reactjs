@@ -1,46 +1,78 @@
-import { useEffect } from 'react';
-import { Button, Col, Row } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getDebtLoanCategories,
-  getExpenseCategories,
-  getIncomeCategories,
-} from '../../features/categoriesSlice';
+import { useNavigate } from 'react-router-dom';
 import { getTransactionByWalletId } from '../../features/transactionSlice';
 import MainLayout from '../layouts/Main';
+import NewTransactionModal from './NewTransactionModal';
+import TransactionDetail from './TransactionDetail';
 import TransactionList from './TransactionList';
+import './transaction.css';
 
 const Transaction = () => {
-  const { id: walletId, currency } = useSelector(state => state.wallet.walletInfo);
-  const categories = useSelector(state => state.categories);
+  const [showModal, setShowModal] = useState({
+    newTransaction: false,
+    transactionDetail: false,
+    deleteTransaction: false,
+  });
+  const [isEdit, setIsEdit] = useState(false);
+
+  const handleClose = modalName => setShowModal({ ...showModal, [modalName]: false });
+  const handleShow = modalName => setShowModal({ ...showModal, [modalName]: true });
+
+  const { id: userId } = useSelector(state => state.user.userInfo);
+  const { walletInfo } = useSelector(state => state.wallet);
   const { transactions } = useSelector(state => state.transaction);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getDebtLoanCategories());
-    dispatch(getExpenseCategories());
-    dispatch(getIncomeCategories());
-    dispatch(getTransactionByWalletId(walletId));
+    if (!userId) navigate('/');
+    if (walletInfo.id && transactions.length === 0)
+      dispatch(getTransactionByWalletId(walletInfo.id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <MainLayout>
-      <Row className='w-100 h-75 d-flex m-0'>
-        <Col className='bg-light p-0 rounded-4' xs={6} md={6} xl={6}>
-          <Row className='px-5 py-2 m-0 border-bottom'>
-            <Col sm={12} className='h-100 d-flex align-items-center justify-content-end p-0'>
-              <Button variant='outline-success fw-semibold' type='button'>
-                Add new transaction
-              </Button>
-            </Col>
-          </Row>
-          <TransactionList
-            transactionList={transactions}
-            currency={currency}
-            categories={categories}
-          />
+      <NewTransactionModal
+        dispatch={dispatch}
+        wallet={walletInfo}
+        show={showModal.newTransaction}
+        handleClose={handleClose}
+        setIsEdit={setIsEdit}
+        isEdit={isEdit}
+      />
+      <Row className='w-100 h-75 d-flex m-0 justify-content-center'>
+        <Col xs={12} sm={5} xl={5} className='p-0 h-100 transactionListContainer'>
+          <Container className='bg-light p-0 h-100 overflow-hidden'>
+            <Row className='px-5 py-2 m-0 border-bottom' style={{ height: '8%' }}>
+              <Col sm={12} className='h-100 d-flex align-items-center justify-content-end p-0'>
+                <Button
+                  variant='outline-success fw-semibold'
+                  type='button'
+                  onClick={() => {
+                    handleShow('newTransaction');
+                  }}>
+                  Add transaction
+                </Button>
+              </Col>
+            </Row>
+            <TransactionList
+              transactionList={transactions}
+              currency={walletInfo.currency}
+              handleShow={handleShow}
+            />
+          </Container>
         </Col>
+        <TransactionDetail
+          show={showModal.transactionDetail}
+          handleClose={handleClose}
+          handleShow={handleShow}
+          setIsEdit={setIsEdit}
+          dispatch={dispatch}
+          showDeleteModal={showModal.deleteTransaction}
+        />
       </Row>
     </MainLayout>
   );

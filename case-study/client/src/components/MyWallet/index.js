@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Button, ButtonGroup, Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getCurrencyList } from '../../features/walletSlice';
 import convertDecimal from '../../hooks/convertDecimal';
 import MainLayout from '../layouts/Main';
 import AdjustBalanceModal from './AdjustBalanceModal';
@@ -28,8 +27,7 @@ const MyWallet = () => {
 
   useEffect(() => {
     if (!userId) navigate('/');
-    if (currencyList.length === 0) dispatch(getCurrencyList());
-  }, [userId, navigate, dispatch, currencyList]);
+  }, [userId, navigate, dispatch]);
 
   if (!walletInfo.id) return <CreateNewWallet currencyList={currencyList} userId={userId} />;
   else

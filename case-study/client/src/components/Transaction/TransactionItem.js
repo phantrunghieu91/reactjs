@@ -1,11 +1,22 @@
 import { Col, Image, Row } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectingTransactionById } from '../../features/transactionSlice';
 import convertDecimal from '../../hooks/convertDecimal';
+import useTransactionColor from '../../hooks/useTransactionColor';
 import * as img from '../../imgs';
-import css from './transaction.module.css';
+import './transaction.css';
 
-const TransactionItem = ({ transaction, currency, categories }) => {
+const TransactionItem = ({ transaction, currency, handleShow }) => {
+  const dispatch = useDispatch();
+  const categories = useSelector(state => state.categories);
+  const { id: selectedId } = useSelector(state => state.transaction.selectedTransaction);
+  // Get category info
+  const getCategoryInfo = type =>
+    categories[type].filter(item => item.id === transaction.categoryId)[0];
+
+  // render img function
   const imgRender = type => {
-    const category = categories[type].filter(item => item.id === transaction.categoryId)[0];
+    const category = getCategoryInfo(type);
     return (
       <Image
         style={{ height: 40, width: 40 }}
@@ -16,18 +27,26 @@ const TransactionItem = ({ transaction, currency, categories }) => {
     );
   };
   return (
-    <Row className={`${css.transactionItem} px-5 py-2 m-0 border-bottom`} key={transaction.id}>
+    <Row
+      className={`transactionItem px-3 py-2 m-0 border-bottom`}
+      key={transaction.id}
+      onClick={() => {
+        if (!selectedId || selectedId !== transaction.id)
+          dispatch(selectingTransactionById(transaction.id));
+        handleShow('transactionDetail');
+      }}>
       <Col md={2} xl={1} className='p-0 d-flex align-items-center'>
         {imgRender(transaction.type)}
       </Col>
       <Col md={5} xl={5} className='h-100 d-flex flex-column justify-content-center p-0'>
+        <span className='fw-semibold'>{getCategoryInfo(transaction.type).name}</span>
         <span>{transaction.date}</span>
-        <span className='text-secondary'>{transaction.note}</span>
+        <span className='text-secondary fst-italic'>{transaction.note}</span>
       </Col>
       <Col md={5} xl={6} className='p-0 d-flex align-items-center justify-content-end flex-grow-1'>
-        <span className={`${transaction.type === 'income' ? 'text-success' : 'text-danger'}`}>{`${
+        <span className={`${useTransactionColor(transaction.type, transaction.categoryId)}`}>{`${
           transaction.type === 'income' ? '+' : '-'
-        }${convertDecimal(transaction.amount.toString())} ${currency}`}</span>
+        }${convertDecimal(transaction.amount)} ${currency}`}</span>
       </Col>
     </Row>
   );

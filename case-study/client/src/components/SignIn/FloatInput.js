@@ -2,7 +2,7 @@ import FloatLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { Field } from 'formik';
 
-const FloatInput = ({ name, type, id, label, disabled }) => {
+const FloatInput = ({ name, type, id, label, disabled, onClick }) => {
   return (
     <Field name={name}>
       {({ field, form }) => {
@@ -18,6 +18,7 @@ const FloatInput = ({ name, type, id, label, disabled }) => {
               placeholder={label}
               disabled={disabled || false}
               className='mb-3'
+              onClick={'' || onClick}
             />
             <Form.Control.Feedback type='invalid' className='px-3 py-1 fs-4'>
               {form.errors[field.name]}

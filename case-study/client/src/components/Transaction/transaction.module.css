@@ -1,6 +1,0 @@
-.transactionItem {
-  cursor: pointer;
-}
-.transactionItem:hover {
-  background-color: hsl(152, 61%, 90%);
-}

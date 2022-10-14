@@ -19,31 +19,47 @@
   ],
   "wallets": [
     {
-      "name": "Changed v2",
-      "balance": 80000,
+      "name": "admin wallet",
+      "balance": 50000,
+      "currency": "RUB",
+      "userId": 1,
+      "id": 1
+    },
+    {
+      "name": "jin's wallet",
+      "balance": 1900000,
       "currency": "VND",
-      "id": 1,
-      "userId": 2
+      "userId": 2,
+      "id": 2
     }
   ],
   "transactions": [
     {
-      "id": 1,
-      "type": "income",
       "categoryId": 3,
-      "amount": 140000,
+      "type": "income",
+      "amount": 50000,
       "note": "Initial Balance",
-      "date": "2022-09-27",
-      "walletId": 1
+      "date": "2022-10-14",
+      "walletId": 1,
+      "id": 1
     },
     {
-      "id": 2,
-      "type": "expense",
+      "categoryId": 3,
+      "type": "income",
+      "amount": 2000000,
+      "note": "Initial Balance",
+      "date": "2022-10-14",
+      "walletId": 2,
+      "id": 2
+    },
+    {
+      "walletId": 2,
       "categoryId": 5,
-      "amount": 60000,
+      "type": "expense",
+      "amount": 100000,
+      "date": "2022-10-14",
       "note": "",
-      "date": "2022-09-27",
-      "walletId": 1
+      "id": 3
     }
   ],
   "expenseCategories": [
