@@ -20,14 +20,14 @@
   "wallets": [
     {
       "name": "admin wallet",
-      "balance": 50000,
+      "balance": 49700,
       "currency": "RUB",
       "userId": 1,
       "id": 1
     },
     {
       "name": "jin's wallet",
-      "balance": 1900000,
+      "balance": 2880000,
       "currency": "VND",
       "userId": 2,
       "id": 2
@@ -54,12 +54,57 @@
     },
     {
       "walletId": 2,
-      "categoryId": 5,
+      "categoryId": 4,
       "type": "expense",
-      "amount": 100000,
+      "amount": 200000,
       "date": "2022-10-14",
       "note": "",
-      "id": 3
+      "id": 4
+    },
+    {
+      "walletId": 2,
+      "categoryId": 3,
+      "type": "debtLoan",
+      "amount": 500000,
+      "date": "2022-10-14",
+      "note": "Mii's",
+      "id": 5
+    },
+    {
+      "walletId": 2,
+      "categoryId": 1,
+      "type": "debtLoan",
+      "amount": 80000,
+      "date": "2022-10-14",
+      "note": "",
+      "id": 6
+    },
+    {
+      "walletId": 2,
+      "categoryId": 4,
+      "type": "income",
+      "amount": 1500000,
+      "date": "2022-10-12",
+      "note": "",
+      "id": 7
+    },
+    {
+      "walletId": 1,
+      "categoryId": 3,
+      "type": "expense",
+      "amount": 100,
+      "date": "2022-10-14",
+      "note": "",
+      "id": 8
+    },
+    {
+      "walletId": 1,
+      "categoryId": 4,
+      "type": "expense",
+      "amount": 200,
+      "date": "2022-10-04",
+      "note": "",
+      "id": 9
     }
   ],
   "expenseCategories": [

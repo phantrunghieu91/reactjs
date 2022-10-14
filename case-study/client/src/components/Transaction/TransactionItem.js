@@ -2,7 +2,8 @@ import { Col, Image, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectingTransactionById } from '../../features/transactionSlice';
 import convertDecimal from '../../hooks/convertDecimal';
-import useTransactionColor from '../../hooks/useTransactionColor';
+import transactionColor from '../../hooks/transactionColor';
+import transactionNumberType from '../../hooks/transactionNumberType';
 import * as img from '../../imgs';
 import './transaction.css';
 
@@ -35,18 +36,22 @@ const TransactionItem = ({ transaction, currency, handleShow }) => {
           dispatch(selectingTransactionById(transaction.id));
         handleShow('transactionDetail');
       }}>
-      <Col md={2} xl={1} className='p-0 d-flex align-items-center'>
+      <Col xs={2} xl={1} className='p-0 d-flex align-items-center'>
         {imgRender(transaction.type)}
       </Col>
-      <Col md={5} xl={5} className='h-100 d-flex flex-column justify-content-center p-0'>
+      <Col xs={5} xl={5} className='h-100 d-flex flex-column justify-content-center p-0'>
         <span className='fw-semibold'>{getCategoryInfo(transaction.type).name}</span>
         <span>{transaction.date}</span>
         <span className='text-secondary fst-italic'>{transaction.note}</span>
       </Col>
-      <Col md={5} xl={6} className='p-0 d-flex align-items-center justify-content-end flex-grow-1'>
-        <span className={`${useTransactionColor(transaction.type, transaction.categoryId)}`}>{`${
-          transaction.type === 'income' ? '+' : '-'
-        }${convertDecimal(transaction.amount)} ${currency}`}</span>
+      <Col xs={5} xl={6} className='p-0 d-flex align-items-center justify-content-end flex-grow-1'>
+        <span
+          className={`${transactionColor(
+            transaction.type,
+            transaction.categoryId
+          )}`}>{`${transactionNumberType(transaction.type, transaction.categoryId)}${convertDecimal(
+          transaction.amount
+        )} ${currency}`}</span>
       </Col>
     </Row>
   );

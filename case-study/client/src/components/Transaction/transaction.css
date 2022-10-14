@@ -23,7 +23,11 @@
 }
 
 #transactionList {
-  height: 92%;
+  height: 72%;
   scrollbar-color: rgb(197, 197, 197) gray;
   scrollbar-width: thin;
+}
+
+#inOutFlow {
+  height: 20%;
 }

@@ -41,7 +41,7 @@ const NewTransactionModal = ({ show, handleClose, wallet, dispatch, isEdit, setI
         categoryId: yup.string().required().nullable(),
         type: yup.string(),
         amount: yup.number().required().min(1),
-        date: yup.date(),
+        date: yup.date().required(),
         note: yup.string(),
       })}
       onSubmit={(values, { resetForm }) => {
@@ -67,7 +67,7 @@ const NewTransactionModal = ({ show, handleClose, wallet, dispatch, isEdit, setI
                 amount: Math.abs(transaction.amount - values.amount),
               })
             );
-          }, 500);
+          }, 200);
         }
         resetForm();
         setIsEdit(false);

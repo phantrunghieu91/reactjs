@@ -1,4 +1,4 @@
-import Col from 'react-bootstrap/esm/Container';
+import Container from 'react-bootstrap/esm/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
@@ -21,14 +21,14 @@ const Header = () => {
       bg='dark'
       variant='dark'
       className='border-bottom border-secondary'>
-      <Col fluid className='d-flex'>
+      <Container fluid className='d-flex'>
         <Navbar.Brand as={NavLink} to='/' className='active'>
           <Image rounded src={BrandImg} style={{ width: 32, height: 32 }} />
           &nbsp; MoneyManager
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls='navbar' />
+        <Navbar.Toggle aria-controls='navbarHeader' />
         {username && (
-          <Navbar.Collapse id='navbar' className='w-100 d-flex'>
+          <Navbar.Collapse id='navbarHeader' className='w-100 d-flex'>
             <Nav className='w-50 d-flex flex-column ps-md-5'>
               {name && <span className='text-light fw-bold'>{name}</span>}
               {name && (
@@ -53,7 +53,7 @@ const Header = () => {
             </Nav>
           </Navbar.Collapse>
         )}
-      </Col>
+      </Container>
     </Navbar>
   );
 };

@@ -8,6 +8,7 @@ import NewTransactionModal from './NewTransactionModal';
 import TransactionDetail from './TransactionDetail';
 import TransactionList from './TransactionList';
 import './transaction.css';
+import InOutFlow from './InOutFlow';
 
 const Transaction = () => {
   const [showModal, setShowModal] = useState({
@@ -28,10 +29,9 @@ const Transaction = () => {
 
   useEffect(() => {
     if (!userId) navigate('/');
-    if (walletInfo.id && transactions.length === 0)
-      dispatch(getTransactionByWalletId(walletInfo.id));
+    if (transactions.length === 0) dispatch(getTransactionByWalletId(walletInfo.id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [walletInfo.id]);
 
   return (
     <MainLayout>
@@ -46,8 +46,8 @@ const Transaction = () => {
       <Row className='w-100 h-75 d-flex m-0 justify-content-center'>
         <Col xs={12} sm={5} xl={5} className='p-0 h-100 transactionListContainer'>
           <Container className='bg-light p-0 h-100 overflow-hidden'>
-            <Row className='px-5 py-2 m-0 border-bottom' style={{ height: '8%' }}>
-              <Col sm={12} className='h-100 d-flex align-items-center justify-content-end p-0'>
+            <Row className='px-sm-5 px-3 py-3 m-0 border-bottom' style={{ height: '10%' }}>
+              <Col xs={12} className='h-100 d-flex align-items-center justify-content-end p-0'>
                 <Button
                   variant='outline-success fw-semibold'
                   type='button'
@@ -58,6 +58,7 @@ const Transaction = () => {
                 </Button>
               </Col>
             </Row>
+            <InOutFlow />
             <TransactionList
               transactionList={transactions}
               currency={walletInfo.currency}

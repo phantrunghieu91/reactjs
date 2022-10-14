@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getWalletByUserId } from '../../features/walletSlice';
@@ -18,7 +19,14 @@ const Home = () => {
     }
   }, [username, navigate, userId, dispatch, walletId]);
 
-  return <MainLayout>{username && <h2>Welcome, {username}</h2>}</MainLayout>;
+  return (
+    <MainLayout>
+      <Container>
+        {username && <h2>Welcome, {username}</h2>}
+        <h2 className='fw-bold'>Simple way to manage personal finances</h2>
+      </Container>
+    </MainLayout>
+  );
 };
 
 export default Home;

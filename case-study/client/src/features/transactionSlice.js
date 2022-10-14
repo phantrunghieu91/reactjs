@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import transacionAmountConvert from '../hooks/transacionAmountConvert';
 
 const client = axios.create({
   baseURL: 'http://localhost:3001/transactions',
@@ -76,6 +77,8 @@ const initialState = {
   isLoading: false,
   transactions: [],
   selectedTransaction: {},
+  inflow: 0,
+  outflow: 0,
 };
 
 const transactionSlice = createSlice({
@@ -84,6 +87,9 @@ const transactionSlice = createSlice({
   reducers: {
     clearTransactions: state => {
       state.transactions = [];
+      state.selectedTransaction = {};
+      state.inflow = 0;
+      state.outflow = 0;
     },
     selectingTransactionById: (state, { payload }) => {
       state.selectedTransaction = state.transactions.filter(item => item.id === payload)[0];
@@ -93,26 +99,49 @@ const transactionSlice = createSlice({
     // Create new transaction
     [createNewTransaction.pending]: state => {},
     [createNewTransaction.fulfilled]: (state, { payload }) => {
+      const amount = transacionAmountConvert(payload.amount, payload.type, payload.categoryId);
+      if (amount > 0) state.inflow += payload.amount;
+      else state.outflow += payload.amount;
       state.transactions = [...state.transactions, payload];
     },
     [createNewTransaction.rejected]: state => {},
     // Get transactions by wallet id
     [getTransactionByWalletId.pending]: state => {},
     [getTransactionByWalletId.fulfilled]: (state, { payload }) => {
+      payload.forEach(item => {
+        const amount = transacionAmountConvert(item.amount, item.type, item.categoryId);
+        if (amount > 0) state.inflow += item.amount;
+        else state.outflow += item.amount;
+      });
       state.transactions = payload;
     },
     [getTransactionByWalletId.rejected]: state => {},
     // Delete all transactions of currenct wallet
     [deleteAllTransactions.pending]: state => {},
-    [deleteAllTransactions.fulfilled]: (state, { payload }) => {
-      if (payload) state.transactions = [];
+    [deleteAllTransactions.fulfilled]: state => {
+      state.transactions = [];
+      state.inflow = 0;
+      state.outflow = 0;
+      state.selectedTransaction = {};
     },
     [deleteAllTransactions.rejected]: state => {},
     // Delete transaction by id
     [deleteTransactionById.pending]: state => {},
     [deleteTransactionById.fulfilled]: (state, { payload: deletedId }) => {
       state.selectedTransaction = {};
-      state.transactions = state.transactions.filter(transaction => transaction.id !== deletedId);
+      state.transactions = state.transactions.filter(transaction => {
+        if (transaction.id === deletedId) {
+          const amount = transacionAmountConvert(
+            transaction.amount,
+            transaction.type,
+            transaction.categoryId
+          );
+          if (amount > 0) state.inflow -= transaction.amount;
+          else state.outflow -= transaction.amount;
+        } else {
+          return transaction;
+        }
+      });
     },
     [deleteTransactionById.rejected]: state => {},
     // Edit transaction

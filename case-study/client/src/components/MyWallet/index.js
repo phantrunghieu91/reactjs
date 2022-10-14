@@ -56,12 +56,12 @@ const MyWallet = () => {
           dispatch={dispatch}
         />
         <Row className='w-100 h-50 d-flex justify-content-center m-0'>
-          <Col className='bg-light p-0 rounded-4' xs={12} md={10} xl={6}>
-            <Row className='px-5 m-0 border-bottom h-25'>
-              <Col sm={6} className='h-100 d-flex align-items-center p-0'>
-                <h3 className='fw-semibold'>Wallet Detail</h3>
+          <Col className='bg-light p-0' xs={12} md={10} xl={6}>
+            <Row className='px-md-5 px-xs-2 m-0 border-bottom h-25'>
+              <Col xs={4} className='h-100 d-flex align-items-center p-0'>
+                <h3 className='fw-semibold text-center'>Wallet Detail</h3>
               </Col>
-              <Col sm={6} className='h-100 d-flex align-items-center justify-content-end'>
+              <Col xs={8} className='h-100 d-flex align-items-center justify-content-end'>
                 <ButtonGroup className='w-75'>
                   <Button
                     variant='outline-success'
@@ -99,7 +99,7 @@ const MyWallet = () => {
             </Col>
             <Col className='h-25 d-flex align-items-center justify-content-center p-0'>
               <button
-                className='btn btn-outline-primary h-50 w-50'
+                className='btn btn-outline-primary h-50 w-50 fw-semibold'
                 onClick={() => {
                   handleShow('adjustBalance');
                 }}>

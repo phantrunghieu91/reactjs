@@ -1,4 +1,4 @@
-const useTransactionNumberType = (type, id) => {
+const transactionNumberType = (type, id) => {
   switch (type) {
     case 'income':
       return '+';
@@ -11,4 +11,4 @@ const useTransactionNumberType = (type, id) => {
   }
 };
 
-export default useTransactionNumberType;
+export default transactionNumberType;

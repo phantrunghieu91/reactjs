@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { createNewTransaction, deleteAllTransactions } from './transactionSlice';
 import useCurrentDate from '../hooks/useCurrentDate';
-import useTransactionNumberType from '../hooks/useTransactionNumberType';
+import transactionNumberType from '../hooks/transactionNumberType';
 
 // const client = axios.create({
 //   baseURL: 'https://api.apilayer.com/currency_data',
@@ -123,7 +123,7 @@ export const transactionBalanceChange = createAsyncThunk(
   'wallet/transactionBalanceChange',
   async (transaction, thunkApi) => {
     try {
-      const amount = +`${useTransactionNumberType(transaction.type, transaction.categoryId)}${
+      const amount = +`${transactionNumberType(transaction.type, transaction.categoryId)}${
         transaction.amount
       }`;
       const { walletInfo: wallet } = thunkApi.getState().wallet;

@@ -3,7 +3,7 @@ import { Button, ButtonGroup, CloseButton, Col, Container, Image, Row } from 're
 import { useSelector } from 'react-redux';
 import convertDecimal from '../../hooks/convertDecimal';
 import useShowDetailDate from '../../hooks/useShowDetailDate';
-import useTransactionColor from '../../hooks/useTransactionColor';
+import transactionColor from '../../hooks/transactionColor';
 import * as img from '../../imgs';
 import DeleteTransactionModal from './DeleteTransactionModal';
 import './transaction.css';
@@ -96,8 +96,7 @@ const TransactionDetail = ({
               <span className='text-secondary fst-italic'>
                 {transaction.note && transaction.note}
               </span>
-              <h3
-                className={`${useTransactionColor(transaction.type, transaction.categoryId)}`}>{`${
+              <h3 className={`${transactionColor(transaction.type, transaction.categoryId)}`}>{`${
                 transaction.type === 'income' ? '+' : '-'
               }${
                 transaction.amount && convertDecimal(transaction.amount.toString())
