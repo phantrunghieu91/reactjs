@@ -56,17 +56,12 @@ const NewTransactionModal = ({ show, handleClose, wallet, dispatch, isEdit, setI
         if (!isEdit) {
           dispatch(createNewTransaction(requestData));
           setTimeout(() => {
-            dispatch(transactionBalanceChange(requestData));
+            dispatch(transactionBalanceChange());
           }, 200);
         } else {
           dispatch(editTransaction(requestData));
           setTimeout(() => {
-            dispatch(
-              transactionBalanceChange({
-                ...transaction,
-                amount: Math.abs(transaction.amount - values.amount),
-              })
-            );
+            dispatch(transactionBalanceChange());
           }, 200);
         }
         resetForm();

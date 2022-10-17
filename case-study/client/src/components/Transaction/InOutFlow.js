@@ -12,18 +12,18 @@ const InOutFlow = () => {
       <Row className='mb-2 px-3'>
         <Col xs={6}>Inflow:</Col>
         <Col xs={6} className='text-end text-primary'>
-          {`${inflow === 0 ? '' : '-'}${convertDecimal(inflow)} ${currency}`}
+          {`${convertDecimal(inflow)} ${currency}`}
         </Col>
       </Row>
       <Row className='mb-2 px-3'>
         <Col xs={6}>Outflow:</Col>
         <Col xs={6} className='text-end text-danger'>
-          {`${outflow === 0 ? '' : '-'}${convertDecimal(outflow)} ${currency}`}
+          {`${convertDecimal(outflow)} ${currency}`}
         </Col>
       </Row>
       <Row className='border-top border-dark mx-2'>
         <Col xs={12} className='text-end p-2 fw-semibold'>
-          {`${inflow - outflow > 0 ? '+' : '-'}${convertDecimal(inflow - outflow)} ${currency}`}
+          {`${convertDecimal(inflow - outflow)} ${currency}`}
         </Col>
       </Row>
     </Container>

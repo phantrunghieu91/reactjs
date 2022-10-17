@@ -121,15 +121,13 @@ export const adjustBalance = createAsyncThunk(
 
 export const transactionBalanceChange = createAsyncThunk(
   'wallet/transactionBalanceChange',
-  async (transaction, thunkApi) => {
+  async (_, thunkApi) => {
     try {
-      const amount = +`${transactionNumberType(transaction.type, transaction.categoryId)}${
-        transaction.amount
-      }`;
+      const { inflow, outflow } = thunkApi.getState().transaction;
       const { walletInfo: wallet } = thunkApi.getState().wallet;
       const { data } = await client.put(`/wallets/${wallet.id}`, {
         ...wallet,
-        balance: wallet.balance + +amount,
+        balance: inflow - outflow,
       });
       return data;
     } catch (error) {

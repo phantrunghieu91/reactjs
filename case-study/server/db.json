@@ -1,110 +1,50 @@
 {
   "users": [
     {
-      "id": 1,
-      "username": "admin",
-      "firstname": "ad",
-      "lastname": "min",
-      "email": "admin@gmail.com",
-      "password": "letmein"
-    },
-    {
-      "id": 2,
       "username": "raejin91",
-      "firstname": "Kim ",
-      "lastname": "Rae Jin",
-      "email": "phantrunghieu@gmail.com",
-      "password": "asdasd"
+      "password": "asdasd",
+      "email": "phantrunghieu1291@gmail.com",
+      "firstname": "",
+      "lastname": "",
+      "id": 1
     }
   ],
   "wallets": [
     {
-      "name": "admin wallet",
-      "balance": 49700,
-      "currency": "RUB",
+      "name": "testing",
+      "balance": 650,
+      "currency": "CAD",
       "userId": 1,
       "id": 1
-    },
-    {
-      "name": "jin's wallet",
-      "balance": 2880000,
-      "currency": "VND",
-      "userId": 2,
-      "id": 2
     }
   ],
   "transactions": [
     {
       "categoryId": 3,
       "type": "income",
-      "amount": 50000,
+      "amount": 500,
       "note": "Initial Balance",
-      "date": "2022-10-14",
+      "date": "2022-10-17",
       "walletId": 1,
       "id": 1
     },
     {
+      "walletId": 1,
       "categoryId": 3,
-      "type": "income",
-      "amount": 2000000,
-      "note": "Initial Balance",
-      "date": "2022-10-14",
-      "walletId": 2,
+      "type": "expense",
+      "amount": 50,
+      "date": "2022-10-17",
+      "note": "",
       "id": 2
     },
     {
-      "walletId": 2,
-      "categoryId": 4,
-      "type": "expense",
-      "amount": 200000,
-      "date": "2022-10-14",
-      "note": "",
-      "id": 4
-    },
-    {
-      "walletId": 2,
+      "walletId": 1,
       "categoryId": 3,
-      "type": "debtLoan",
-      "amount": 500000,
-      "date": "2022-10-14",
-      "note": "Mii's",
-      "id": 5
-    },
-    {
-      "walletId": 2,
-      "categoryId": 1,
-      "type": "debtLoan",
-      "amount": 80000,
-      "date": "2022-10-14",
-      "note": "",
-      "id": 6
-    },
-    {
-      "walletId": 2,
-      "categoryId": 4,
       "type": "income",
-      "amount": 1500000,
-      "date": "2022-10-12",
-      "note": "",
-      "id": 7
-    },
-    {
-      "walletId": 1,
-      "categoryId": 3,
-      "type": "expense",
-      "amount": 100,
-      "date": "2022-10-14",
-      "note": "",
-      "id": 8
-    },
-    {
-      "walletId": 1,
-      "categoryId": 4,
-      "type": "expense",
       "amount": 200,
-      "date": "2022-10-04",
+      "date": "2022-10-17",
       "note": "",
-      "id": 9
+      "id": 3
     }
   ],
   "expenseCategories": [

@@ -1,75 +1,79 @@
 import MainLayout from '../layouts/Main';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import useDaysInMonth from '../../hooks/useDaysInMonth';
 import { getTransactionByWalletId } from '../../features/transactionSlice';
-import { Container, Table } from 'react-bootstrap';
-import transactionNumberType from '../../hooks/transactionNumberType';
+import { Col, Container, Row } from 'react-bootstrap';
 import converDecimal from '../../hooks/convertDecimal';
-import transactionColor from '../../hooks/transactionColor';
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+import BarChart from './BarChart';
+import { useNavigate } from 'react-router-dom';
 
 const Report = () => {
+  const { username } = useSelector(state => state.user.userInfo);
   const { walletInfo: wallet } = useSelector(state => state.wallet);
-  const { transactions } = useSelector(state => state.transaction);
-  const categories = useSelector(state => state.categories);
-  const [chartData, setChartData] = useState({
-    datasets: [],
-  });
+  const { transactions, inflow, outflow } = useSelector(state => state.transaction);
   const [chartOption, setChartOption] = useState({});
-  const totalDays = useDaysInMonth(2022, 10);
+  const [daysHadTransaction, setDayHadTransaction] = useState([]);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // Get category info
-  const getCategoryInfo = (type, transaction) =>
-    categories[type].filter(item => item.id === transaction.categoryId)[0];
-
   useEffect(() => {
+    if (!username) navigate('/');
     if (transactions.length === 0) dispatch(getTransactionByWalletId(wallet.id));
-    setChartData({
-      labels: totalDays,
-      datasets: totalDays.map(day => {
-        const transactionAtDay = transactions.filter(item => new Date(item.date).getDate() === day);
-        if (transactionAtDay.length > 0) {
-          return transactionAtDay.map(tran => {
-            if (
-              tran.type === 'income' ||
-              (tran.type === 'debtLoan' && (tran.categoryId === 1 || tran.categoryId === 2))
-            )
-              return tran.amount;
-          });
-        } else {
-          return 0;
-        }
-      }),
+    setDayHadTransaction(
+      transactions
+        .reduce((result, item) => {
+          if (result.length === 0) return [item.date];
+          else if (!result.includes(item.date)) {
+            return [...result, item.date];
+          } else {
+            return result;
+          }
+        }, [])
+        .sort()
+    );
+    setChartOption({
+      responsive: true,
+      maintainAspectRatio: false,
     });
-  }, [wallet.id]);
+  }, [wallet.id, transactions.length]);
 
-  const daysHadTransaction = transactions
-    .reduce((result, item) => {
-      if (result.length === 0) return [new Date(item.date).getDate()];
-      else if (!result.includes(new Date(item.date).getDate())) {
-        return [...result, new Date(item.date).getDate()];
-      } else {
-        return result;
-      }
-    }, [])
-    .sort();
   return (
-    <MainLayout>
-      <Container className='bg-light p-2'></Container>
+    <MainLayout className='d-flex justify-content-center pb-3'>
+      <Container className='bg-light p-2 h-75 w-75'>
+        <Row>
+          <Col xs={12} className='d-flex flex-column align-items-center'>
+            <span className='fst-italic text-secondary'>Balance</span>
+            <span className='fs-3 fw-bold'>{`${wallet.balance && converDecimal(wallet.balance)} ${
+              wallet.currency
+            }`}</span>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12}>
+            <BarChart
+              transactions={transactions}
+              labels={daysHadTransaction}
+              options={chartOption}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={6} className='d-flex flex-column align-items-center'>
+            <span className='fst-italic text-secondary'>Income</span>
+            <span className='fs-5 text-primary'>{`${inflow && converDecimal(inflow)} ${
+              wallet.currency
+            }`}</span>
+          </Col>
+          <Col xs={6} className='d-flex flex-column align-items-center'>
+            <span className='fst-italic text-secondary'>Expense</span>
+            <span className='fs-5 text-danger'>{`${outflow && converDecimal(outflow)} ${
+              wallet.currency
+            }`}</span>
+          </Col>
+        </Row>
+      </Container>
     </MainLayout>
   );
 };

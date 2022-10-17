@@ -15,12 +15,12 @@ import FoodnDrink from './categories/expense/foodndrink.png';
 import GasBill from './categories/expense/gas_bill.png';
 import GiftsDonations from './categories/expense/gifts_donations.png';
 import HomeMaintenance from './categories/expense/home_maintenance.png';
-import HomeService from './categories/expense/home_services.png';
+import HomeServices from './categories/expense/home_services.png';
 import Houseware from './categories/expense/housewave.png';
 import Insurances from './categories/expense/insurances.png';
 import InternetBill from './categories/expense/internet_bill.png';
 import Investment from './categories/expense/investment.png';
-import MakeUp from './categories/expense/makeup.png';
+import Makeup from './categories/expense/makeup.png';
 import Medical from './categories/expense/medical.png';
 import OtherExpense from './categories/expense/other_expense.png';
 import OtherUtilityBill from './categories/expense/other_utility_bill.png';
@@ -54,12 +54,12 @@ export {
   GasBill,
   GiftsDonations,
   HomeMaintenance,
-  HomeService,
+  HomeServices,
   Houseware,
   Insurances,
   InternetBill,
   Investment,
-  MakeUp,
+  Makeup,
   Medical,
   OtherExpense,
   OtherUtilityBill,

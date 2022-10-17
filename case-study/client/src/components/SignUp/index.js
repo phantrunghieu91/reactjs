@@ -15,10 +15,6 @@ const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (userInfo.username) navigate('/');
-  }, [userInfo, navigate]);
-
   return (
     <MainLayout>
       <Formik
@@ -41,6 +37,9 @@ const SignUp = () => {
               lastname: '',
             })
           );
+          setTimeout(() => {
+            navigate('/');
+          }, 500);
         }}>
         {({ handleSubmit }) => (
           <Row className='h-75 w-100 d-flex justify-content-center m-0'>

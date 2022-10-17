@@ -39,12 +39,9 @@ const TransactionDetail = ({
       />
     );
   };
+
   return (
-    <Col
-      xs={0}
-      sm={7}
-      className='p-0 ps-3 transactionDetail'
-      style={show ? { display: 'block' } : { display: 'none' }}>
+    <Col xs={0} sm={7} className={`p-0 ps-3 transactionDetail ${show ? 'show' : 'hide'}`}>
       <DeleteTransactionModal
         handleClose={handleClose}
         dispatch={dispatch}

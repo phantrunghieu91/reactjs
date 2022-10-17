@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import transacionAmountConvert from '../hooks/transacionAmountConvert';
+import transactionNumberType from '../hooks/transactionNumberType';
 
 const client = axios.create({
   baseURL: 'http://localhost:3001/transactions',
@@ -148,6 +149,45 @@ const transactionSlice = createSlice({
     [editTransaction.pending]: state => {},
     [editTransaction.fulfilled]: (state, { payload }) => {
       state.selectedTransaction = payload;
+      if (transactionNumberType(payload.type, payload.categoryId) === '+') {
+        const calculating = state.transactions.reduce(
+          (result, tran) => {
+            if (payload.id === tran.id) {
+              if (transactionNumberType(payload.type, payload.categoryId) === '+') {
+                return { ...result, inflow: result.inflow + payload.amount };
+              } else {
+                return { ...result, outflow: result.outflow + payload.amount };
+              }
+            } else {
+              if (transactionNumberType(tran.type, tran.categoryId) === '+') {
+                return { ...result, inflow: result.inflow + tran.amount };
+              } else return { ...result, outflow: result.outflow + tran.amount };
+            }
+          },
+          { inflow: 0, outflow: 0 }
+        );
+        state.inflow = calculating.inflow;
+        state.outflow = calculating.outflow;
+      } else {
+        const calculating = state.transactions.reduce(
+          (result, tran) => {
+            if (payload.id === tran.id) {
+              if (transactionNumberType(payload.type, payload.categoryId) === '+') {
+                return { ...result, inflow: result.inflow + payload.amount };
+              } else {
+                return { ...result, outflow: result.outflow + payload.amount };
+              }
+            } else {
+              if (transactionNumberType(tran.type, tran.categoryId) === '+') {
+                return { ...result, inflow: result.inflow + tran.amount };
+              } else return { ...result, outflow: result.outflow + tran.amount };
+            }
+          },
+          { inflow: 0, outflow: 0 }
+        );
+        state.inflow = calculating.inflow;
+        state.outflow = calculating.outflow;
+      }
       state.transactions = state.transactions.map(item => {
         if (item.id === payload.id) item = payload;
         return item;
